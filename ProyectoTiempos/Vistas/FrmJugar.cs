@@ -23,6 +23,7 @@ namespace ProyectoTiempos.Vistas
         private Casa casa;
         private Logica log;
         private DateTime fecha;
+        private LogicaCasaNoPierde logCasa;
 
 
 
@@ -36,6 +37,7 @@ namespace ProyectoTiempos.Vistas
             cbSorteo.DataSource = log.cargarComboxSorteosNoPremiados();
             apuesta = new Apuesta();
             casa = new Casa();
+            logCasa = new LogicaCasaNoPierde();
 
         }
         public FrmJugar(Modelo.Persona persona)
@@ -48,6 +50,7 @@ namespace ProyectoTiempos.Vistas
             this.persona = persona;
             apuesta = new Apuesta();
             casa = new Casa();
+            logCasa = new LogicaCasaNoPierde();
         }
 
 
@@ -60,11 +63,7 @@ namespace ProyectoTiempos.Vistas
 
                     int numero = Convert.ToInt32(cbNumero.SelectedItem.ToString());
                     double monto = validarMonto();
-                    apuesta.Insert(persona.id, id_sorteo, monto, numero);
-                    modificacionCasa();
-                    txtMontoApuesta.Text = "";
-                    cbNumero.SelectedIndex = -1;
-                    MessageBox.Show("Apuesta Realizada");
+                   
                     if (!validarFecha())
                     {
                         apuesta.Insert(persona.id, id_sorteo, monto, numero);
