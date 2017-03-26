@@ -8,6 +8,7 @@ namespace ProyectoTiempos.Modelo
 {
    public class DineroAPagar
     {
+        public int id_sorteo;
         public int numero;
         public double monto;
     }
