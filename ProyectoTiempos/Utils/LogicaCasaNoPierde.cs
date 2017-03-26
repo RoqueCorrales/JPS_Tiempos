@@ -14,6 +14,8 @@ namespace ProyectoTiempos.Utils
         private Controladores.Sorteo sorteo;
         private Controladores.Apuesta apu;
         private Modelo.SorteoPremiado sorPre;
+        private List<Modelo.DineroAPagar> listaDineroTotalPorNumero;
+        private List<int> listaNumeros;
         private double montoCasa;
         private double primerPremio;
         private double segundoPremio;
@@ -28,6 +30,8 @@ namespace ProyectoTiempos.Utils
             sorPre = new Modelo.SorteoPremiado();
             sorteo = new Controladores.Sorteo();
             dpagar = new Modelo.DineroAPagar();
+            listaDineroTotalPorNumero = new List<Modelo.DineroAPagar>();
+            listaNumeros = new List<int>();
         }
 
         private List<Modelo.Sorteo> TraerSorteosNOpagados()
@@ -74,42 +78,45 @@ namespace ProyectoTiempos.Utils
             DataTable result = new DataTable();
             List<Modelo.Apuesta> listaApuestas = new List<Modelo.Apuesta>();
             List<Modelo.Apuesta> listaApuestasModificada = new List<Modelo.Apuesta>();
-
-            result = apu.SelectApuesta(id_sorteo);
-            for (int i = 0; i < result.Rows.Count; i++)
+            DataTable resultNumeros = new DataTable();
+            resultNumeros = apu.SelectApuestaNumerosDistintos(id_sorteo);
+            if (resultNumeros.Rows.Count > 0)
             {
-                 Modelo.Apuesta apuesta = new Modelo.Apuesta();
-                apuesta.id = Convert.ToInt32(result.Rows[i]["id"]);
-                apuesta.id_persona = Convert.ToInt32(result.Rows[i]["id_persona"]);
-                apuesta.id_sorteo = Convert.ToInt32(result.Rows[i]["id_sorteo"]);
-                apuesta.numero = Convert.ToInt32(result.Rows[i]["numero"]);
-                apuesta.monto = Convert.ToDouble(result.Rows[i]["monto_apostado"]);
-                listaApuestas.Add(apuesta);
-                if(listaApuestasModificada.Count == 0)
-                {
-                    listaApuestasModificada.Add(apuesta);
-                }else
-                {
-                    for (int j = 0; j < listaApuestasModificada.Count; j++)
-                    {
-                        if (listaApuestasModificada[j].numero == apuesta.numero)
-                        {
-                            apuesta.monto = apuesta.monto + listaApuestas[j].monto;
-                            listaApuestasModificada.Add(apuesta);
-                        }
-                        else
-                        {
-                            listaApuestasModificada.Add(apuesta);
-                        }
 
-                    }
+                for (int i = 0; i < resultNumeros.Rows.Count; i++)
+                {
+                    listaNumeros.Add(Convert.ToInt32(resultNumeros.Rows[i]["numero"]));
                 }
-               
-                
+
+                for (int i = 0; i < listaNumeros.Count; i++)
+                {
+                    DineroApostadoAunNumero(id_sorteo, listaNumeros[i]);
+                }
+
             }
 
-            return listaApuestasModificada ;
+            return listaApuestasModificada;
         }
+
+        public void DineroApostadoAunNumero(int id_sorteo,int numero)
+        {
+            DataTable result = new DataTable();
+            result = apu.SelectDineroApostadoAunnumero(id_sorteo, numero);
+           
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                Modelo.DineroAPagar dp = new Modelo.DineroAPagar();
+                dp.monto = Convert.ToInt32(result.Rows[i]["sum"]);
+                dp.id_sorteo = id_sorteo;
+                dp.numero = numero;
+                listaDineroTotalPorNumero.Add(dp);
+            }
+
+
+
+        }
+
+
 
         public List<Modelo.DineroAPagar> ListaDineroPagar(List<Modelo.Apuesta> listaApuestas)
         {

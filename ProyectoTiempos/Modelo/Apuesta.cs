@@ -67,5 +67,27 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
+
+        public DataTable SelectDineroApostadoAunnumero(int id_sorteo, int numero)
+        {
+            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where id_sorteo = "+id_sorteo+" and numero = "+numero, new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
+        public DataTable SelectApuestaNumerosDistintos(int id_sorteo)
+        {
+            DataTable result = Program.da.SqlQuery("select  DISTINCT numero from apuesta where id_sorteo = '" + id_sorteo + "'", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
     }
 }

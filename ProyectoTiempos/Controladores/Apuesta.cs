@@ -16,7 +16,7 @@ namespace ProyectoTiempos.Controladores
      {
          this.apuesta = new Modelo.Apuesta();
         }
-
+        
         public void Insert(int id_persona, int id_sorteo, double monto, int numero)
         {
             this.apuesta = new Modelo.Apuesta(id_persona, id_sorteo, monto, numero);
@@ -40,6 +40,29 @@ namespace ProyectoTiempos.Controladores
             return result;
         }
 
-
+        public DataTable SelectDineroApostadoAunnumero(int id_sorteo, int numero)
+        {
+            DataTable result = new DataTable();
+            result = new DataTable();
+            result = this.apuesta.SelectDineroApostadoAunnumero(id_sorteo, numero);
+            if (this.apuesta.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.apuesta.errorDescription;
+            }
+            return result;
+        }
+        public DataTable SelectApuestaNumerosDistintos(int id)
+        {
+            DataTable result = new DataTable();
+            result = new DataTable();
+            result = this.apuesta.SelectApuestaNumerosDistintos(id);
+            if (this.apuesta.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.apuesta.errorDescription;
+            }
+            return result;
+        }
     }
 }

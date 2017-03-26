@@ -56,9 +56,8 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            logCasa.recorrerLista();
             if (validarMonto() > 0)
-            {
-                if (validarMonto() > 0)
                 {
 
                     int numero = Convert.ToInt32(cbNumero.SelectedItem.ToString());
@@ -81,12 +80,12 @@ namespace ProyectoTiempos.Vistas
                 }
                 else
                 {
-                    MessageBox.Show("Dinero invalido");
+                   
                     MessageBox.Show("Problema. Dinero no valido ");
                 }
 
 
-            }
+            
         }
 
         public void buscarID()
