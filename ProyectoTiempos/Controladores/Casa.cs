@@ -18,6 +18,9 @@ namespace ProyectoTiempos.Controladores
             this.casa = new Modelo.Casa();
         }
 
+        /* Insertar Configuracion de la casa.
+         * Recibe dos parametros, un nombre, y un monto inicial.
+         */
         public void Insert(string nombre, double dinero)
         {
             this.casa = new Modelo.Casa(nombre, dinero);
@@ -29,6 +32,10 @@ namespace ProyectoTiempos.Controladores
             }
         }
 
+        /*
+         * Hace un select completo a los datos de la casa.
+         * Devuelve un DATATABLE.
+         */
         public DataTable Select()
         {
             DataTable result = new DataTable();
@@ -41,6 +48,10 @@ namespace ProyectoTiempos.Controladores
             return result;
         }
 
+        /* 
+         *Hace un UPDATE a la casa.
+         * recibe un id, un nombre, y un dinero. 
+         */
         public void Update(int id, string nombre, double dinero)
         {
             this.casa = new Modelo.Casa(nombre, dinero);
@@ -52,6 +63,10 @@ namespace ProyectoTiempos.Controladores
             }
         }
 
+        /* 
+       *Hace un UPDATE al Dinero de la casa.
+       * recibe un id,  y un dinero. 
+       */
         public void UpdateDinero(int id, double dinero)
         {
             this.casa = new Modelo.Casa(dinero);

@@ -16,7 +16,10 @@ namespace ProyectoTiempos.Controladores
      {
          this.apuesta = new Modelo.Apuesta();
         }
-        
+
+        /*Metodo de insertar una apuesta a nuestra base de Datos. 
+         * Recibe id_persona, id_sorteo,monto ,numero.
+         */
         public void Insert(int id_persona, int id_sorteo, double monto, int numero)
         {
             this.apuesta = new Modelo.Apuesta(id_persona, id_sorteo, monto, numero);
@@ -27,6 +30,11 @@ namespace ProyectoTiempos.Controladores
             this.errorDescription = this.apuesta.errorDescription;
                }
         }
+
+        /*Selecciona una apuesta por id.
+         *  id parametro que recibe.
+         *  Devuelve un DATATABLE.
+         */
         public DataTable SelectApuesta(int id)
         {
             DataTable result = new DataTable();
@@ -39,7 +47,12 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
-
+        /*
+         *Seleciona el dinero apostado a un numero. 
+         * Recibe de parametros id_sorteo, numero.
+         * Devuelve un DATATABLE.
+         * 
+         */
         public DataTable SelectDineroApostadoAunnumero(int id_sorteo, int numero)
         {
             DataTable result = new DataTable();
@@ -52,6 +65,12 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
+
+        /*
+         *Selecciona los numeros apostados a un sorteo. 
+         * Recibe de parametro un id, que sera el id del sorteo.
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectApuestaNumerosDistintos(int id)
         {
             DataTable result = new DataTable();

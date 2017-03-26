@@ -29,8 +29,12 @@ namespace ProyectoTiempos.Modelo
             this.fecha = fecha;
             this.estado = estado;
         }
-
-        public DataTable SelectCodigo()
+    
+    /*
+     *Selecciona los sorteos. 
+     * Devuelve un DATATABLE.
+     */
+    public DataTable SelectCodigo()
         {
             DataTable result = Program.da.SqlQuery("select * from sorteo ;", new Dictionary<string, object>());
             if (Program.da.isError)
@@ -40,6 +44,10 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
+        /*
+         *Selecciona los sorteos en estado true.  
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectSorteosEstadoTrue()
 {
             DataTable result = Program.da.SqlQuery("SELECT * FROM public.sorteo WHERE estado = True;", new Dictionary<string, object>());
@@ -51,7 +59,10 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
-
+        /*
+             *Inserta un sorteo.
+             * Recibe una descripcion, un codigo,una fecha, y un estado. 
+             */
         public void Insert()
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -76,8 +87,12 @@ namespace ProyectoTiempos.Modelo
 
 
         }
-       
 
+        /*
+        *Hace un UPDATE, a un sorteo determinado.
+        * Parametros id, una descripcion, fecha, estado, codigo. 
+        * 
+        */
         public void Update(int id, string descripcion, DateTime fecha,Boolean estado, string codigo)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -94,6 +109,12 @@ namespace ProyectoTiempos.Modelo
                 return;
             }
         }
+
+
+        /*
+         * Hace un select de sorteos por codigo.
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectCodigo(String codigo)
         {
 
@@ -105,7 +126,10 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
-
+        /*
+         * Busca los sorteos en estado false.
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectSorteosEstadoFalse()
         {
             DataTable result = Program.da.SqlQuery("SELECT * FROM public.sorteo WHERE estado = false;", new Dictionary<string, object>());

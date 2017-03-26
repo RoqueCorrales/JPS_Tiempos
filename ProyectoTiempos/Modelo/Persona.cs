@@ -31,7 +31,10 @@ namespace ProyectoTiempos.Modelo
             this.contrasenna = contrasenna;
             this.correo = correo;
         }
-
+        /*
+         *Hace un select. 
+         * Devuelve un DATATABLE.
+         */
         public DataTable Select()
         {
             DataTable result = Program.da.SqlQuery("select * from persona;", new Dictionary<string, object>());
@@ -42,7 +45,10 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
-
+        /*
+        *Inserta datos en la tabla persona. 
+        * recibe de parametros nombre,apellido,cedula,contrasenna y correo. Propiedad de la persona.
+        */
         public void Insert()
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -68,6 +74,12 @@ namespace ProyectoTiempos.Modelo
 
 
         }
+
+        /*
+         *Hace un select de personas.
+         * Parametro usado es el correo.
+         * Devuelve un DATATABLE.
+         */
         public DataTable Select(string correo)
         {
 
@@ -79,7 +91,11 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
-
+        /*
+         *Hace un select por id de las personas.
+         * Recibe de parametro un id. 
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectPorId(int id)
         {
 

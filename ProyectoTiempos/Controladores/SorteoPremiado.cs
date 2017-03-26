@@ -17,6 +17,10 @@ namespace ProyectoTiempos.Controladores
             this.sorPre = new Modelo.SorteoPremiado();
         }
 
+        /*
+         *Inserta SorteosPremiados.
+         * Recibe codigo_sorteo, numUno,numDos,numTres y un id-sorteo. 
+         */
         public void Insert( string codigo_sorteo, int numUno, int numDos, int numTres, int id_sorteo)
         {
             this.sorPre = new Modelo.SorteoPremiado();
@@ -27,6 +31,9 @@ namespace ProyectoTiempos.Controladores
                 this.errorDescription = this.sorPre.errorDescription;
             }
         }
+        /*
+         * Hace un select completo a nuestros sorteos premiados.
+         */
         public DataTable Select()
         {
             DataTable result = new DataTable();

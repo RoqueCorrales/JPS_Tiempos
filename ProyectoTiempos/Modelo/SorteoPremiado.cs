@@ -21,7 +21,10 @@ namespace ProyectoTiempos.Modelo
 
 
 
-
+        /*
+         *Inserta SorteosPremiados.
+         * Recibe codigo_sorteo, numUno,numDos,numTres y un id-sorteo. 
+         */
         public void Insert( string codigo_sorteo,int numUno,int numDos,int numTres, int id_sorteo)
         {
             Boolean pagado = false;
@@ -47,6 +50,9 @@ namespace ProyectoTiempos.Modelo
         }
 
 
+        /*
+         * Hace un select completo a nuestros sorteos premiados.
+         */
         public DataTable Select()
         {
             DataTable result = Program.da.SqlQuery("select * from  public.numpremiados;", new Dictionary<string, object>());
