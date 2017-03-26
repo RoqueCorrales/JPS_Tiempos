@@ -15,6 +15,10 @@ namespace ProyectoTiempos.Controladores
         {
             this.sorteo = new Modelo.Sorteo();
         }
+        /*
+         *Inserta un sorteo.
+         * Recibe una descripcion, un codigo,una fecha, y un estado. 
+         */
         public void Insert(string descripcion, string codigo, DateTime fecha, Boolean estado)
         {
             this.sorteo = new Modelo.Sorteo(descripcion, codigo, fecha, estado);
@@ -26,6 +30,10 @@ namespace ProyectoTiempos.Controladores
             }
         }
 
+        /*
+         *Selecciona los sorteos en estado true.  
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectSorteosEstadoTrue()
         {
             DataTable result = new DataTable();
@@ -38,7 +46,10 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
-
+        /*
+         *Selecciona todos los sorteos que se encuentran registrados. 
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectCodigo()
         {
             DataTable result = new DataTable();
@@ -53,7 +64,11 @@ namespace ProyectoTiempos.Controladores
         }
 
 
-
+        /*
+         *Hace un UPDATE, a un sorteo determinado.
+         * Parametros id, una descripcion, fecha, estado, codigo. 
+         * 
+         */
         public void Update(int id, string descripcion, DateTime fecha, Boolean estado, string codigo)
         {
 
@@ -65,6 +80,10 @@ namespace ProyectoTiempos.Controladores
             }
         }
 
+        /*
+         * Hace un select de sorteos por codigo.
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectCodigo(String codigo)
         {
             DataTable result = new DataTable();
@@ -77,6 +96,10 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
+        /*
+         * Busca los sorteos en estado false.
+         * Devuelve un DATATABLE.
+         */
         public DataTable SelectSorteosEstadoFalse()
         {
             DataTable result = new DataTable();

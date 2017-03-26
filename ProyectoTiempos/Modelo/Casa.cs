@@ -33,7 +33,10 @@ namespace ProyectoTiempos.Modelo
 
 
 
-
+        /*
+        * Hace un select completo a los datos de la casa.
+        * Devuelve un DATATABLE.
+        */
         public DataTable Select()
         {
             DataTable result = Program.da.SqlQuery("select * from configuracion;", new Dictionary<string, object>());
@@ -45,6 +48,9 @@ namespace ProyectoTiempos.Modelo
             return result;
         }
 
+        /* Insertar Configuracion de la casa.
+         * Recibe dos parametros, un nombre, y un monto inicial.
+         */
         public void Insert()
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -66,6 +72,10 @@ namespace ProyectoTiempos.Modelo
 
         }
 
+        /* 
+         *Hace un UPDATE a la casa.
+         * recibe un id, un nombre, y un dinero. 
+         */
         public void Update(int id)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -80,7 +90,10 @@ namespace ProyectoTiempos.Modelo
                 return;
             }
         }
-
+        /* 
+       *Hace un UPDATE al Dinero de la casa.
+       * recibe un id,  y un dinero. 
+       */
         public void UpdateDinero(int id)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();

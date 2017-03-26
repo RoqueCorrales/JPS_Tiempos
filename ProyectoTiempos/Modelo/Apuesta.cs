@@ -27,6 +27,10 @@ namespace ProyectoTiempos.Modelo
             this.numero = numero;
         }
 
+        /*Metodo de insertar una apuesta a nuestra base de Datos. 
+         * Recibe id_persona, id_sorteo,monto ,numero.
+         * Usando los parametros del constructor.
+         */
         public void Insert()
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>();
@@ -47,6 +51,11 @@ namespace ProyectoTiempos.Modelo
             }
 
         }
+
+        /*
+         *Hace un select completo a nuestra tabla sorteos.
+         * retorna un datatable. 
+         */
         public DataTable Select()
         {
             DataTable result = Program.da.SqlQuery("select * from apuesta;", new Dictionary<string, object>());
@@ -57,6 +66,11 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
+
+        /*Selecciona una apuesta por id.
+      *  id parametro que recibe.
+      *  Devuelve un DATATABLE.
+      */
         public DataTable SelectApuesta(int id)
         {
             DataTable result = Program.da.SqlQuery("select * from apuesta where id_sorteo = '" + id + "'", new Dictionary<string, object>());
@@ -68,6 +82,12 @@ namespace ProyectoTiempos.Modelo
             return result;
         }
 
+        /*
+         *Seleciona el dinero apostado a un numero. 
+         * Recibe de parametros id_sorteo, numero.
+         * Devuelve un DATATABLE.
+         * 
+         */
         public DataTable SelectDineroApostadoAunnumero(int id_sorteo, int numero)
         {
             DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where id_sorteo = "+id_sorteo+" and numero = "+numero, new Dictionary<string, object>());
@@ -78,7 +98,11 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
-
+        /*
+        *Selecciona los numeros apostados a un sorteo. 
+        * Recibe de parametro un id, que sera el id del sorteo.
+        * Devuelve un DATATABLE.
+        */
         public DataTable SelectApuestaNumerosDistintos(int id_sorteo)
         {
             DataTable result = Program.da.SqlQuery("select  DISTINCT numero from apuesta where id_sorteo = '" + id_sorteo + "'", new Dictionary<string, object>());
