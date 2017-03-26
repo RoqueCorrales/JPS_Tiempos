@@ -33,7 +33,7 @@ namespace ProyectoTiempos.Utils
         {
             DataTable result = new DataTable();
 
-            result = this.sorteo.SelectCodigo();
+            result = this.sorteo.SelectSorteosEstadoFalse();
             List<string> lista = new List<string>();
             if (this.sorteo.isError)
             {
@@ -133,7 +133,7 @@ namespace ProyectoTiempos.Utils
 
             lista = new List<Modelo.Sorteo>();
             DataTable result = new DataTable();
-            result = this.sorteo.SelectCodigo();
+            result = this.sorteo.SelectSorteosEstadoTrue();
 
             for (int i = 0; i < result.Rows.Count; i++)
             {
