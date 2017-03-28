@@ -113,5 +113,62 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
+        /*
+         * Busca y Devuelve el monto maximo que hay en apuesta
+         * devuelve un DATATABLE
+         */
+        public DataTable SelectMontoMaximo()
+        {
+            DataTable result = Program.da.SqlQuery("Select a.id , a.id_persona ,a.id_sorteo , a.numero ,a.monto_apostado From apuesta a Where a.monto_apostado = (Select MAX (monto_apostado) From apuesta)", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+        /*
+         * Busca y apuesta por numero
+         * devuelve un DATATABLE
+         */
+        public DataTable SelectApuestaNumero(int numero)
+        {
+            DataTable result = Program.da.SqlQuery("select * from apuesta where numero= '" + numero + "'", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+        /*
+        * Suma de los monton de un numero
+        * devuelve un DATATABLE
+        */
+        public DataTable SelectSumaMontoNumero(int numero)
+        {
+            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where numero = '" + numero + "'", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
+        /*
+       * Ordena los numero de forma descendente (monto apostado)
+       * devuelve un DATATABLE
+       */
+        public DataTable SelectMontoDescendente()
+        {
+            DataTable result = Program.da.SqlQuery("select * from apuesta order by monto_apostado desc;", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
     }
 }

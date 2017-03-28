@@ -111,9 +111,6 @@ namespace ProyectoTiempos.Utils
                 dp.numero = numero;
                 listaDineroTotalPorNumero.Add(dp);
             }
-
-
-
         }
 
 
@@ -130,6 +127,51 @@ namespace ProyectoTiempos.Utils
 
         public void suma(int id_sorteo)
         {
+
+
+        }
+
+        public void PrimerosNumerosConMasMonto()
+        {
+            DataTable result = new DataTable();
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+            int num1 = 0;
+            int num2 = 0;
+            int num3 = 0;
+            double primero = 0;
+            double segundo = 0;
+            double tercero = 0;
+            double total = 0;
+            //validar que no sean el mismo
+            result = apuesta.SelectMontoDescendente();
+            num1 = Convert.ToInt32(result.Rows[0]["numero"]);
+            num2 = Convert.ToInt32(result.Rows[1]["numero"]);
+            num3 = Convert.ToInt32(result.Rows[2]["numero"]);
+
+            // primer premio
+            result = apuesta.SelectSumaMontoNumero(num1);
+            primero = Convert.ToDouble(result.Rows[0]["sum"]);
+            primero = primero * 60;
+
+            //segunda premio
+            result = apuesta.SelectSumaMontoNumero(num2);
+            primero = Convert.ToDouble(result.Rows[0]["sum"]);
+            segundo = segundo * 10;
+
+            //tercer premio
+            result = apuesta.SelectSumaMontoNumero(num3);
+            primero = Convert.ToDouble(result.Rows[0]["sum"]);
+            tercero = tercero * 5;
+
+            //validacion si me alcanza
+            total = primero + segundo + tercero;
+            Modelo.Casa casa = new Modelo.Casa();
+            double dineroCasa = casa.dinero;
+
+            if (dineroCasa<total)
+            {
+                // lo que pasa si nos quedamos sin plata :v xD 
+            }
 
         }
 
