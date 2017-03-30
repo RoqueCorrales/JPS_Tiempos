@@ -78,11 +78,7 @@ namespace ProyectoTiempos.Vistas
                     }
 
                 }
-                else
-                {
-                   
-                    MessageBox.Show("Problema. Dinero no valido ");
-                }
+              
 
 
             

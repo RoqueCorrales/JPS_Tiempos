@@ -170,5 +170,27 @@ namespace ProyectoTiempos.Modelo
             }
             return result;
         }
+
+        /*
+      *Hace un select completo PARA NUESTRA TABLA GANADORES.
+      * retorna un datatable. 
+      */
+        public DataTable SelectParaTablaGanadores(int id_sorteo)
+        {
+            DataTable result = Program.da.SqlQuery("SELECT  apuesta.numero, persona.nombre,apuesta.monto_apostado, sorteo.fecha,numpremiados.codigo_sorteo" +
+           "FROM public.apuesta, public.persona, public.numpremiados,  public.sorteo WHERE apuesta.id_persona = persona.id AND " +
+           " numpremiados.numerouno = apuesta.numero OR numpremiados.numerodos = apuesta.numero OR numpremiados.numerotres = apuesta.numero AND "+
+           " sorteo.id = " + id_sorteo + " AND sorteo.id =" + id_sorteo+";", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
+
+
+
     }
 }

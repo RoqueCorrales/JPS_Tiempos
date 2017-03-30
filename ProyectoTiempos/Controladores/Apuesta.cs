@@ -83,5 +83,23 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
+
+
+        /*Selecciona una apuesta por id.
+        *  id parametro que recibe.
+        *  Devuelve un DATATABLE para la tablaganadores.
+        */
+        public DataTable SelectParaTablaGanadores(int id_sorteo)
+        {
+            DataTable result = new DataTable();
+            result = new DataTable();
+            result = this.apuesta.SelectApuesta(id_sorteo);
+            if (this.apuesta.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.apuesta.errorDescription;
+            }
+            return result;
+        }
     }
 }

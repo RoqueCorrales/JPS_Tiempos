@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace ProyectoTiempos.Modelo
 {
-    class SorteoPremiado : ErrorHandler
+    public class SorteoPremiado : ErrorHandler
     {
-        private int id { set; get; }
-        private string codigo_sorteo { set; get; }
-        private int numUno { set; get; }
-        private int numDos { set; get; }
-        private int numTres { set; get; }
-        private int id_sorteo { set; get; }
-        private Boolean pagado { set; get; }
+        public int id { set; get; }
+        public string codigo_sorteo { set; get; }
+        public int numUno { set; get; }
+        public int numDos { set; get; }
+        public int numTres { set; get; }
+        public int id_sorteo { set; get; }
+        public Boolean pagado { set; get; }
 
 
 
@@ -56,6 +56,20 @@ namespace ProyectoTiempos.Modelo
         public DataTable Select()
         {
             DataTable result = Program.da.SqlQuery("select * from  public.numpremiados;", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
+        /*
+        * Hace un select por codigo a nuestros sorteos premiados.
+        */
+        public DataTable SelectPorCodigo(string cod)
+        {
+            DataTable result = Program.da.SqlQuery("select * from  public.numpremiados where codigo sorteo = " + cod +";", new Dictionary<string, object>());
             if (Program.da.isError)
             {
                 this.isError = true;
