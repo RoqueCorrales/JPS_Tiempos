@@ -29,22 +29,26 @@ namespace ProyectoTiempos.Vistas
             cbSorteo.DataSource = log.cargarCombo();
         }
 
-        private void btnNotificar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
-
+            tablaGanadores.DataSource = log.CompletarTablaGanadores(cbSorteo.SelectedItem.ToString());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void tablaGanadores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            Modelo.Persona p = new Modelo.Persona();
+            int id = Convert.ToInt32(this.tablaGanadores.CurrentRow.Cells[0].Value.ToString());
+            int id_persona = Convert.ToInt32(this.tablaGanadores.CurrentRow.Cells[1].Value.ToString());
+            int id_sorteo = Convert.ToInt32(this.tablaGanadores.CurrentRow.Cells[2].Value.ToString());
+            int numero = Convert.ToInt32(this.tablaGanadores.CurrentRow.Cells[3].Value.ToString());
+            int monto_apostado = Convert.ToInt32(this.tablaGanadores.CurrentRow.Cells[4].Value.ToString());
 
-        }
+            p= log.BuscarPersona(id_persona);
+            double monto = log.pagarMonto(cbSorteo.SelectedItem.ToString(), numero, monto_apostado);
 
-       
-           
-        private void cbSorteo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            lblFelicidades.Text = "FELICIDADES";
+            lblMontoPagado.Text = monto.ToString();
+            lblNombre.Text = p.nombre + " " + p.apellido;
         }
     }
 }

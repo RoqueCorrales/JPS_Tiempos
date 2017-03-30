@@ -13,6 +13,7 @@ namespace ProyectoTiempos.Utils
     public class Logica : ErrorHandler
     {
         private Sorteo sorteo;
+        private Apuesta apues;
         private Notificacion not;
         private SorteoPremiado sorPre;
         private List<Modelo.Sorteo> lista;
@@ -26,6 +27,7 @@ namespace ProyectoTiempos.Utils
             apuesta = new Modelo.Apuesta();
             persona = new Modelo.Persona();
             not = new Notificacion();
+            apues = new Apuesta();
         }
 
 
@@ -267,7 +269,79 @@ namespace ProyectoTiempos.Utils
 
             }
         }
+
+
+        //************************************Tabla Ganadores *********************************************************
+
+        /*
+         * Ir a buscar id del sorteo.
+         * Con el id_sorteo buscar los numeros premiados para ese sorteo.
+         * Luego hacer una busqueda en la tabla apuestas de apuesta.id_sorteo = id_sorteo && where numero apostado = numUno || where numero apostado = numDos || where numero apostado = numTres  
+         * 
+         * */
+         public DataTable CompletarTablaGanadores(string cod)
+        {
+            Modelo.SorteoPremiado sPre = new Modelo.SorteoPremiado();
+            Modelo.Sorteo s = new Modelo.Sorteo();
+            s = buscarInfoSorteo(cod);
+            sPre = CargarInfoSorteoPremiado(cod);
+            return apues.SelectParaTablaGanadores(s.id);
+            
+            
+
+        }
+
+        /*
+         * Almacenar Numeros premiados para un sorteo.
+         * 
+         */
+         public Modelo.SorteoPremiado CargarInfoSorteoPremiado(string cod)
+        {
+            DataTable result = new DataTable();
+            Modelo.SorteoPremiado sPre = new Modelo.SorteoPremiado();
+            result =sorPre.SelectPorCodigo(cod);
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                sPre.id = Convert.ToInt32(result.Rows[i]["id"]);
+                sPre.numUno = Convert.ToInt32(result.Rows[i]["numerouno"]);
+                sPre.numDos = Convert.ToInt32(result.Rows[i]["numerodos"]);
+                sPre.numTres = Convert.ToInt32(result.Rows[i]["numerotres"]);
+                sPre.id_sorteo = Convert.ToInt32(result.Rows[i]["id_sorteo"]);
+                sPre.codigo_sorteo = (result.Rows[i]["codigo_sorteo"]).ToString();
+                sPre.pagado = Convert.ToBoolean(result.Rows[i]["pagado"]);
+            }
+            
+            return sPre;
+        }
         
+        public double pagarMonto(string cod, int numero, double monto)
+        {
+            Modelo.SorteoPremiado sp = new Modelo.SorteoPremiado();
+            DataTable result = new DataTable();
+            int uno = 0;
+            int dos = 0;
+            int tres = 0;
+            result = sorPre.SelectPorCodigo(cod);
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                uno = Convert.ToInt32(result.Rows[i]["numerouno"]);
+                dos = Convert.ToInt32(result.Rows[i]["numerodos"]);
+                tres = Convert.ToInt32(result.Rows[i]["numerotres"]);
+
+            }
+
+            if(numero == uno)
+            {
+                monto = monto * 60;
+            }else if( numero == dos)
+            {
+                monto = monto * 10;
+            }else
+            {
+                monto = monto * 5;
+            }
+            return monto;
+        }
     }
-    }
+}
 

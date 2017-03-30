@@ -46,5 +46,21 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
+
+        /*
+         * Hace un select por codigo a nuestros sorteos premiados.
+         */
+        public DataTable SelectPorCodigo(string cod)
+        {
+            DataTable result = new DataTable();
+            result = new DataTable();
+            result = this.sorPre.SelectPorCodigo(cod);
+            if (this.sorPre.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.sorPre.errorDescription;
+            }
+            return result;
+        }
     }
 }
