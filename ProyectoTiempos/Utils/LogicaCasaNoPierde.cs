@@ -20,6 +20,7 @@ namespace ProyectoTiempos.Utils
         private double primerPremio;
         private double segundoPremio;
         private double tercerPremio;
+        private double montoQuePuedeApostar;
 
         private Modelo.DineroAPagar dpagar;
         public LogicaCasaNoPierde()
@@ -159,37 +160,54 @@ namespace ProyectoTiempos.Utils
             //tercer premio
             primero = Convert.ToDouble(result.Rows[2]["sum"]);
             tercero = tercero * 5;
-
-            //validacion si me alcanza
-            total = primero + segundo + tercero;
-            Modelo.Casa casa = new Modelo.Casa();
-            double dineroCasa = casa.dinero;
-
-            if (dineroCasa<total)
-            {
-                // lo que pasa si nos quedamos sin plata :v xD 
-            }
-
         }
 
-        public Boolean DejarApuesta(int numero , int sorteo)
+        public Boolean DejarApuesta(int numero , int sorteo , double monto)
         {
             DataTable result = new DataTable();
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
             Modelo.Casa casa = new Modelo.Casa();
-            double dineroCasa = casa.dinero;
+            result = casa.SelectDineroCasa();
+            //no se como hacer que si esta vacio ponga un 0 no null
+            double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
+            result =apuesta.SelectSumaMontoNumero(numero ,sorteo);
 
-
-            result =apuesta.SelectSumaMontoNumero(numero , sorteo);
-            double monto = Convert.ToInt32(result.Rows[0]["sum"]);
-            monto = monto * 60;
-            if (monto>dineroCasa)
+            //no se como hacer que si esta vacio ponga un 0 no null
+            int total = Convert.ToInt32(result.Rows[0]["sum"]);
+            montoQuePuedeApostar = monto+total * 60;
+            if (dineroCasa< montoQuePuedeApostar)
             {
                 return false;
             }
             return true;
         }
 
+        public double ApuestaMaxima()
+        {
+            DataTable result = new DataTable();
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+            Modelo.Casa casa = new Modelo.Casa();
+            result = casa.SelectDineroCasa();
+            double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
+            double total;
+            total = montoQuePuedeApostar;
+
+            while (true)
+            {
+                if (total*60>dineroCasa)
+                {
+                    total = total / 60;
+                }
+                if (total*60<=dineroCasa)
+                {
+                    //validar que si se puede aumentar mas
+                   break;
+                }
+                
+            }
+         
+            return Math.Round(total, 0);
+        }
 
 
     }

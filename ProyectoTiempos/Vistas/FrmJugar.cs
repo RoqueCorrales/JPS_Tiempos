@@ -56,6 +56,7 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            
             logCasa.recorrerLista();
             if (validarMonto() > 0)
                 {
@@ -65,11 +66,20 @@ namespace ProyectoTiempos.Vistas
                    
                     if (!validarFecha())
                     {
+
+                    if (logCasa.DejarApuesta(numero,id_sorteo,monto))
+                    {
                         apuesta.Insert(persona.id, id_sorteo, monto, numero);
                         modificacionCasa();
                         txtMontoApuesta.Text = "";
                         cbNumero.SelectedIndex = -1;
                         MessageBox.Show("Apuesta Realizada");
+                    }else
+                    {
+                        MessageBox.Show("Ese dinero no es posible apostarlo porque la casa no tiene el suficioente dinero\n"
+                            +"como para darte tu premio si quedas ganador \nLa apuesta maxima que puedes hacer es de: "+logCasa.ApuestaMaxima());
+                    }
+                       
                     }
                     else
                     {
