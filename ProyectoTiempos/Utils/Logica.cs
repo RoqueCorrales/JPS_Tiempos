@@ -305,6 +305,7 @@ namespace ProyectoTiempos.Utils
                 monto = lista[i].monto * premio;
                 montosPagados = montosPagados + monto;
                 not.enviarCorreo(p.correo,numero,codigo,monto);
+                cargarCasa(montosPagados);
 
             }
             
