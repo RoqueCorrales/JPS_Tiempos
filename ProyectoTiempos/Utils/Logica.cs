@@ -326,7 +326,7 @@ namespace ProyectoTiempos.Utils
                  dinero = Convert.ToDouble(result.Rows[i]["dinero"]);
             }
             montoPagar = dinero - montoPagar;
-            casa.UpdateDinero(id, montoPagar);
+            casa.Update(id, nombre,montoPagar);
         }
 
         //************************************Tabla Ganadores *********************************************************
