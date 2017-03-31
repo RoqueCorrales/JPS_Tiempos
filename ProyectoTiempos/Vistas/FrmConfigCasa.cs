@@ -23,15 +23,23 @@ namespace ProyectoTiempos.Vistas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String nombre = txtNombre.Text;
-
-            if (validacionDinero())
+            try
             {
-                double dinero = Convert.ToDouble(txtDinero.Text);
-                casa.Insert(nombre, dinero);
-                MessageBox.Show("Configuracion establecida");
+                String nombre = txtNombre.Text;
+
+                if (validacionDinero())
+                {
+                    double dinero = Convert.ToDouble(txtDinero.Text);
+                    casa.Insert(nombre, dinero);
+                    MessageBox.Show("Configuracion establecida");
 
 
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Problema.");
             }
 
         }
@@ -61,39 +69,48 @@ namespace ProyectoTiempos.Vistas
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            double dinerin = Convert.ToDouble(txtDinero.Text);
-            if (dinerin > 0)
+            try
             {
-                String nombre = txtNombre.Text;
 
-                DataTable tableCasa = casa.Select();
-                if (tableCasa.Rows.Count > 0)
+                double dinerin = Convert.ToDouble(txtDinero.Text);
+                if (dinerin > 0)
                 {
-                    if (validacionDinero())
+                    String nombre = txtNombre.Text;
+
+                    DataTable tableCasa = casa.Select();
+                    if (tableCasa.Rows.Count > 0)
                     {
+                        if (validacionDinero())
+                        {
 
-                        DataRow row = tableCasa.Rows[0];
-                        int id = Convert.ToInt32(row["id"].ToString());
-                        casa.Update(id, txtNombre.Text, Convert.ToInt64(txtDinero.Text));
-                        MessageBox.Show("Configuracion Actualizada");
+                            DataRow row = tableCasa.Rows[0];
+                            int id = Convert.ToInt32(row["id"].ToString());
+                            casa.Update(id, txtNombre.Text, Convert.ToInt64(txtDinero.Text));
+                            MessageBox.Show("Configuracion Actualizada");
+                        }
+
                     }
+                    else
+                    {
+                        if (validacionDinero())
+                        {
+                            double dinero = Convert.ToDouble(txtDinero.Text);
+                            casa.Insert(nombre, dinero);
+                            MessageBox.Show("Configuracion establecida");
 
+                        }
+
+                    }
                 }
                 else
                 {
-                    if (validacionDinero())
-                    {
-                        double dinero = Convert.ToDouble(txtDinero.Text);
-                        casa.Insert(nombre, dinero);
-                        MessageBox.Show("Configuracion establecida");
-
-                    }
-
+                    MessageBox.Show("Dinero invalido");
                 }
+
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Dinero invalido");
+                MessageBox.Show("Problema");
             }
         }
 
