@@ -56,14 +56,12 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
-            logCasa.recorrerLista();
-            if (validarMonto() > 0)
+
                 {
 
                     int numero = Convert.ToInt32(cbNumero.SelectedItem.ToString());
                     double monto = validarMonto();
-                   
+
                     if (!validarFecha())
                     {
 
@@ -88,10 +86,18 @@ namespace ProyectoTiempos.Vistas
                     }
 
                 }
-              
 
 
-            
+
+
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("Problema.");
+
+            }
+
+
         }
 
         public void buscarID()

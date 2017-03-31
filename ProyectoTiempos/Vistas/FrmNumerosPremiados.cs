@@ -31,27 +31,32 @@ namespace ProyectoTiempos.Vistas
          
         }
 
-        
+
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Object selectedItem = cbSorteo.SelectedItem;
-            string sorteo = selectedItem.ToString();
-            int id = log.buscarID(sorteo);
-            int numUno = Convert.ToInt32(cbPrimero.SelectedItem.ToString());
-            int numDos = Convert.ToInt32(cbSegundo.SelectedItem.ToString());
-            int numTres =Convert.ToInt32(cbTercero.SelectedItem.ToString());
-            sorPre.Insert(sorteo, numUno, numDos, numTres, id);
-            log.informacionPersonaConNumero(sorteo, numUno, numDos, numTres);
+            try {
+                Object selectedItem = cbSorteo.SelectedItem;
+                string sorteo = selectedItem.ToString();
+                int id = log.buscarID(sorteo);
+                int numUno = Convert.ToInt32(cbPrimero.SelectedItem.ToString());
+                int numDos = Convert.ToInt32(cbSegundo.SelectedItem.ToString());
+                int numTres = Convert.ToInt32(cbTercero.SelectedItem.ToString());
+                sorPre.Insert(sorteo, numUno, numDos, numTres, id);
+                log.informacionPersonaConNumero(sorteo, numUno, numDos, numTres);
 
-            if (this.sorteo.isError)
+                if (this.sorteo.isError)
+                {
+                    MessageBox.Show(this.sorteo.errorDescription);
+
+                }
+
+                refrecar();
+            }catch(Exception)
             {
-                MessageBox.Show(this.sorteo.errorDescription);
-
+                MessageBox.Show("Problema, al seleccionar");
             }
-            
-            refrecar();
-        }
+            }
 
         public void refrecar()
         {
@@ -61,7 +66,7 @@ namespace ProyectoTiempos.Vistas
             cbPrimero.SelectedIndex = -1;
             cbTercero.SelectedIndex = -1;
             cbSegundo.SelectedIndex = -1;
-            cbSorteo.DataSource = log.cargarComboxSorteosNoPremiados();
+            cbSorteo.DataSource = log.cargarComboxSorteosNoPremiadosParaFrmNumpremiados();
         }
 
             }

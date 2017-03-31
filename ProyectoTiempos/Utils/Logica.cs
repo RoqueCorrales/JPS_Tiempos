@@ -16,6 +16,7 @@ namespace ProyectoTiempos.Utils
         private Apuesta apues;
         private Notificacion not;
         private SorteoPremiado sorPre;
+        private Casa casa;
         private List<Modelo.Sorteo> lista;
         private Modelo.Apuesta apuesta;
         private Modelo.Persona persona;
@@ -28,6 +29,7 @@ namespace ProyectoTiempos.Utils
             persona = new Modelo.Persona();
             not = new Notificacion();
             apues = new Apuesta();
+            casa = new Casa();
         }
 
 
@@ -87,6 +89,37 @@ namespace ProyectoTiempos.Utils
             DataTable resultPremiados = new DataTable();
 
             todos = sorteo.SelectSorteosEstadoTrue();
+            resultPremiados = sorPre.Select();
+            List<string> lista = new List<string>();
+
+
+            for (int i = 0; i < todos.Rows.Count; i++)
+            {
+                string a = (todos.Rows[i]["codigo"]).ToString();
+                lista.Add(a);
+            }
+
+            for (int j = 0; j < resultPremiados.Rows.Count; j++)
+            {
+                string a = resultPremiados.Rows[j]["codigo_sorteo"].ToString();
+                if (lista.Contains(a))
+                {
+                    lista.Remove(a);
+                }
+            }
+            return lista;
+
+
+        }
+
+
+        public List<String> cargarComboxSorteosNoPremiadosParaFrmNumpremiados()
+        {
+
+            DataTable todos = new DataTable();
+            DataTable resultPremiados = new DataTable();
+
+            todos = sorteo.SelectSorteosEstadoFalse();
             resultPremiados = sorPre.Select();
             List<string> lista = new List<string>();
 
@@ -216,6 +249,7 @@ namespace ProyectoTiempos.Utils
            
             for (int i = 0; i < listaGeneral.Count; i++)
             {
+                double monto = 0;
                if(listaGeneral[i].numero == numUno)
                 {
                     listaUno.Add(listaGeneral[i]);
@@ -229,9 +263,9 @@ namespace ProyectoTiempos.Utils
                     listaTres.Add(listaGeneral[i]);
                 }
             }
-            BuscarYenviarCorreo(listaUno);
-            BuscarYenviarCorreo(listaDos);
-            BuscarYenviarCorreo(listaTres);
+            BuscarYenviarCorreo(listaUno,numUno,codigoSorteo,60);
+            BuscarYenviarCorreo(listaDos,numDos,codigoSorteo,10);
+            BuscarYenviarCorreo(listaTres,numtres,codigoSorteo,5);
             
 
 
@@ -259,17 +293,41 @@ namespace ProyectoTiempos.Utils
 
         }
 
-        public void BuscarYenviarCorreo(List<Modelo.Apuesta> lista)
+        public void BuscarYenviarCorreo(List<Modelo.Apuesta> lista, int numero, string codigo, int premio)
         {
             Modelo.Persona p = new Modelo.Persona();
+            double montosPagados = 0;
             for (int i = 0; i < lista.Count; i++)
             {
                p = BuscarPersona(lista[i].id_persona);
-                not.enviarCorreo(p.correo);
+
+                double monto = 0;
+                monto = lista[i].monto * premio;
+                montosPagados = montosPagados + monto;
+                not.enviarCorreo(p.correo,numero,codigo,monto);
+                cargarCasa(montosPagados);
 
             }
+            
         }
 
+
+        private void cargarCasa(double montoPagar)
+        {
+            double dinero = 0;
+            string nombre = "";
+            int id =0;
+            DataTable result = new DataTable();
+            result = casa.Select();
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                id = Convert.ToInt32(result.Rows[i]["id"]);
+                nombre = result.Rows[i]["nombre"].ToString();
+                 dinero = Convert.ToDouble(result.Rows[i]["dinero"]);
+            }
+            montoPagar = dinero - montoPagar;
+            casa.UpdateDinero(id, montoPagar);
+        }
 
         //************************************Tabla Ganadores *********************************************************
 

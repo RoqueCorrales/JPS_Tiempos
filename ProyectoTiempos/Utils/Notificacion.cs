@@ -16,13 +16,13 @@ namespace ProyectoTiempos.Utils
                 
         }
 
-        public void enviarCorreo(string correo)
+        public void enviarCorreo(string correo,int numero,string codigo,double monto)
         {
             string to = correo;
             string from = "jps.utn.cr@gmail.com";
             MailMessage message = new MailMessage(from, to);
             message.Subject = "Ganador de Sorteo en los nuevos tiempos UTN.";
-            message.Body = "Has resultado favorecio en el sorteo "+"codigo"+ " con el numero "+"numeroApostado"+" \n el monto ganado es de "+"dineroGanado";
+            message.Body = "Has resultado favorecido en el sorteo "+codigo+ " con el numero "+numero+" \n el monto ganado es de "+monto +".";
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
 
 
