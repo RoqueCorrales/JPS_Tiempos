@@ -61,7 +61,7 @@ namespace ProyectoTiempos.Vistas
             cbPrimero.SelectedIndex = -1;
             cbTercero.SelectedIndex = -1;
             cbSegundo.SelectedIndex = -1;
-            cbSorteo.DataSource = log.cargarComboxSorteosNoPremiados();
+            cbSorteo.DataSource = log.cargarComboxSorteosNoPremiadosParaFrmNumpremiados();
         }
 
             }
