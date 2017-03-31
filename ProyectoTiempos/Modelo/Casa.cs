@@ -48,6 +48,21 @@ namespace ProyectoTiempos.Modelo
             return result;
         }
 
+     /*
+    * Hace un select del dinero de la casa.
+    * Devuelve un DATATABLE.
+    */
+        public DataTable SelectDineroCasa()
+        {
+            DataTable result = Program.da.SqlQuery("select dinero from configuracion;", new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
         /* Insertar Configuracion de la casa.
          * Recibe dos parametros, un nombre, y un monto inicial.
          */
