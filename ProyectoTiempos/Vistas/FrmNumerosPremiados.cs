@@ -35,27 +35,25 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            try {
-                Object selectedItem = cbSorteo.SelectedItem;
-                string sorteo = selectedItem.ToString();
-                int id = log.buscarID(sorteo);
-                int numUno = Convert.ToInt32(cbPrimero.SelectedItem.ToString());
-                int numDos = Convert.ToInt32(cbSegundo.SelectedItem.ToString());
-                int numTres = Convert.ToInt32(cbTercero.SelectedItem.ToString());
-                sorPre.Insert(sorteo, numUno, numDos, numTres, id);
-                log.informacionPersonaConNumero(sorteo, numUno, numDos, numTres);
 
-                if (this.sorteo.isError)
-                {
-                    MessageBox.Show(this.sorteo.errorDescription);
+            Object selectedItem = cbSorteo.SelectedItem;
+            string sorteo = selectedItem.ToString();
+            int id = log.buscarID(sorteo);
+            int numUno = Convert.ToInt32(cbPrimero.SelectedItem.ToString());
+            int numDos = Convert.ToInt32(cbSegundo.SelectedItem.ToString());
+            int numTres = Convert.ToInt32(cbTercero.SelectedItem.ToString());
+            sorPre.Insert(sorteo, numUno, numDos, numTres, id);
+            log.informacionPersonaConNumero(sorteo, numUno, numDos, numTres);
 
-                }
-
-                refrecar();
-            }catch(Exception)
+            if (this.sorteo.isError)
             {
-                MessageBox.Show("Problema, al seleccionar");
+                MessageBox.Show(this.sorteo.errorDescription);
+
             }
+
+            refrecar();
+        
+            
             }
 
         public void refrecar()
