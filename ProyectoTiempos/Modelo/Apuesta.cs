@@ -73,7 +73,9 @@ namespace ProyectoTiempos.Modelo
       */
         public DataTable SelectApuesta(int id)
         {
-            DataTable result = Program.da.SqlQuery("select * from apuesta where id_sorteo = '" + id + "'", new Dictionary<string, object>());
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+            parametros.Add("id_sorteo", id);
+            DataTable result = Program.da.SqlQuery("select * from apuesta where id_sorteo = @id", parametros);
             if (Program.da.isError)
             {
                 this.isError = true;
@@ -90,7 +92,10 @@ namespace ProyectoTiempos.Modelo
          */
         public DataTable SelectDineroApostadoAunnumero(int id_sorteo, int numero)
         {
-            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where id_sorteo = "+id_sorteo+" and numero = "+numero, new Dictionary<string, object>());
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+            parametros.Add("id_sorteo", id_sorteo);
+            parametros.Add("numero", numero);
+            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where id_sorteo = @id_sorteo and numero = @numero", parametros);
             if (Program.da.isError)
             {
                 this.isError = true;
