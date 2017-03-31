@@ -168,14 +168,21 @@ namespace ProyectoTiempos.Utils
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
             Modelo.Casa casa = new Modelo.Casa();
             result = casa.SelectDineroCasa();
-            //no se como hacer que si esta vacio ponga un 0 no null
+            int total = 0;
+
             double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
             result =apuesta.SelectSumaMontoNumero(numero ,sorteo);
 
-            //no se como hacer que si esta vacio ponga un 0 no null
-            int total = Convert.ToInt32(result.Rows[0]["sum"]);
-            montoQuePuedeApostar = monto+total * 60;
-            if (dineroCasa< montoQuePuedeApostar)
+            try
+            {
+                total = Convert.ToInt32(result.Rows[0]["sum"]);
+            }
+            catch (Exception e)
+            {
+                total = 0;
+            }
+            montoQuePuedeApostar = (monto + total ) * 60;
+            if (montoQuePuedeApostar > dineroCasa)
             {
                 return false;
             }
