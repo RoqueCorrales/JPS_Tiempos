@@ -131,7 +131,7 @@ namespace ProyectoTiempos.Utils
 
         }
 
-        public void PrimerosNumerosConMasMonto()
+        public void PrimerosNumerosConMasMonto(int id_sorteo)
         {
             DataTable result = new DataTable();
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
@@ -142,25 +142,22 @@ namespace ProyectoTiempos.Utils
             double segundo = 0;
             double tercero = 0;
             double total = 0;
+
             //validar que no sean el mismo
-            result = apuesta.SelectMontoDescendente();
+            result = apuesta.SelectMontoDescendente(id_sorteo);
             num1 = Convert.ToInt32(result.Rows[0]["numero"]);
             num2 = Convert.ToInt32(result.Rows[1]["numero"]);
             num3 = Convert.ToInt32(result.Rows[2]["numero"]);
 
             // primer premio
-            result = apuesta.SelectSumaMontoNumero(num1);
             primero = Convert.ToDouble(result.Rows[0]["sum"]);
             primero = primero * 60;
-
             //segunda premio
-            result = apuesta.SelectSumaMontoNumero(num2);
-            primero = Convert.ToDouble(result.Rows[0]["sum"]);
+            primero = Convert.ToDouble(result.Rows[1]["sum"]);
             segundo = segundo * 10;
 
             //tercer premio
-            result = apuesta.SelectSumaMontoNumero(num3);
-            primero = Convert.ToDouble(result.Rows[0]["sum"]);
+            primero = Convert.ToDouble(result.Rows[2]["sum"]);
             tercero = tercero * 5;
 
             //validacion si me alcanza
@@ -173,6 +170,24 @@ namespace ProyectoTiempos.Utils
                 // lo que pasa si nos quedamos sin plata :v xD 
             }
 
+        }
+
+        public Boolean DejarApuesta(int numero , int sorteo)
+        {
+            DataTable result = new DataTable();
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+            Modelo.Casa casa = new Modelo.Casa();
+            double dineroCasa = casa.dinero;
+
+
+            result =apuesta.SelectSumaMontoNumero(numero , sorteo);
+            double monto = Convert.ToInt32(result.Rows[0]["sum"]);
+            monto = monto * 60;
+            if (monto>dineroCasa)
+            {
+                return false;
+            }
+            return true;
         }
 
 
