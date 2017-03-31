@@ -142,12 +142,12 @@ namespace ProyectoTiempos.Modelo
             return result;
         }
         /*
-        * Suma de los monton de un numero
+        * Suma de los montos de un numero
         * devuelve un DATATABLE
         */
-        public DataTable SelectSumaMontoNumero(int numero)
+        public DataTable SelectSumaMontoNumero(int numero , int sorteo)
         {
-            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where numero = '" + numero + "'", new Dictionary<string, object>());
+            DataTable result = Program.da.SqlQuery("SELECT sum(monto_apostado) FROM public.apuesta where numero = "+numero +" and id_sorteo = "+sorteo+";", new Dictionary<string, object>());
             if (Program.da.isError)
             {
                 this.isError = true;
@@ -160,9 +160,9 @@ namespace ProyectoTiempos.Modelo
        * Ordena los numero de forma descendente (monto apostado)
        * devuelve un DATATABLE
        */
-        public DataTable SelectMontoDescendente()
+        public DataTable SelectMontoDescendente(int id_sorteo)
         {
-            DataTable result = Program.da.SqlQuery("select * from apuesta order by monto_apostado desc;", new Dictionary<string, object>());
+            DataTable result = Program.da.SqlQuery("select distinct (numero),sum(monto_apostado) from apuesta where id_sorteo ="+id_sorteo +" group by numero order by sum desc;", new Dictionary<string, object>());
             if (Program.da.isError)
             {
                 this.isError = true;
