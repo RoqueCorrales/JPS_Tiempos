@@ -56,7 +56,7 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            logCasa.recorrerLista();
+          //  logCasa.recorrerLista();
             if (validarMonto() > 0)
                 {
 
