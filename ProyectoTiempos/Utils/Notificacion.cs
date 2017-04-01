@@ -22,7 +22,7 @@ namespace ProyectoTiempos.Utils
             string from = "jps.utn.cr@gmail.com";
             MailMessage message = new MailMessage(from, to);
             message.Subject = "Ganador de Sorteo en los nuevos tiempos UTN.";
-            message.Body = "Has resultado favorecido en el sorteo "+codigo+ " con el numero "+numero+" \n el monto ganado es de "+monto +".";
+            message.Body = "Has resultado favorecido en el sorteo "+codigo+ " con el numero "+numero+"  el monto ganado es de "+monto +" colones.";
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
 
 

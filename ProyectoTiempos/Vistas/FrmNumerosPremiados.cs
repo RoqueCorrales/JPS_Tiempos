@@ -83,5 +83,9 @@ namespace ProyectoTiempos.Vistas
             cbSorteo.DataSource = log.cargarComboxSorteosNoPremiadosParaFrmNumpremiados();
         }
 
-            }
+        private void FrmNumerosPremiados_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

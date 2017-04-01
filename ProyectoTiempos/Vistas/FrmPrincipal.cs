@@ -72,7 +72,7 @@ namespace ProyectoTiempos
         {
             if (this.HandleForm(this.oGanadores))
             {
-                this.oGanadores = new FrmGanadores();
+                this.oGanadores = new FrmGanadores(privilegios,person);
                 oGanadores.MdiParent = this;
                 oGanadores.Show();
             }
@@ -188,6 +188,16 @@ namespace ProyectoTiempos
             sorteosVencidos();
             
         }
+
+        private void tablaGanadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.HandleForm(this.oGanadores))
+            {
+                this.oGanadores = new FrmGanadores(privilegios, person);
+                oGanadores.MdiParent = this;
+                oGanadores.Show();
+            }
         }
+    }
     }
 
