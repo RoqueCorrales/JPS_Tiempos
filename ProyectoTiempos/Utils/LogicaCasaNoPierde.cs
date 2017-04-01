@@ -21,6 +21,7 @@ namespace ProyectoTiempos.Utils
         private double segundoPremio;
         private double tercerPremio;
         private double montoQuePuedeApostar;
+        private Modelo.Casa casa;
 
         private Modelo.DineroAPagar dpagar;
         public LogicaCasaNoPierde()
@@ -33,6 +34,7 @@ namespace ProyectoTiempos.Utils
             dpagar = new Modelo.DineroAPagar();
             listaDineroTotalPorNumero = new List<Modelo.DineroAPagar>();
             listaNumeros = new List<int>();
+            casa = new Modelo.Casa();
         }
 
         private List<Modelo.Sorteo> TraerSorteosNOpagados()
@@ -132,41 +134,50 @@ namespace ProyectoTiempos.Utils
 
         }
 
-        public void PrimerosNumerosConMasMonto(int id_sorteo)
+        public double PrimerosNumerosConMasMonto(int id_sorteo)
         {
             DataTable result = new DataTable();
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
-            int num1 = 0;
-            int num2 = 0;
-            int num3 = 0;
             double primero = 0;
             double segundo = 0;
             double tercero = 0;
             double total = 0;
+            int cont = 0;
 
-            //validar que no sean el mismo
             result = apuesta.SelectMontoDescendente(id_sorteo);
-            num1 = Convert.ToInt32(result.Rows[0]["numero"]);
-            num2 = Convert.ToInt32(result.Rows[1]["numero"]);
-            num3 = Convert.ToInt32(result.Rows[2]["numero"]);
+            if (result.Rows.Count != 0)
+            {
 
-            // primer premio
-            primero = Convert.ToDouble(result.Rows[0]["sum"]);
-            primero = primero * 60;
-            //segunda premio
-            primero = Convert.ToDouble(result.Rows[1]["sum"]);
-            segundo = segundo * 10;
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+                    cont++;
+                    if (cont ==1)
+                    {
+                        primero = Convert.ToDouble(result.Rows[i]["sum"])*60;
+                    }else if (cont ==2)
+                    {
+                        segundo = Convert.ToDouble(result.Rows[i]["sum"])*10;
+                    }else if (cont ==3)
+                    {
+                        tercero = Convert.ToDouble(result.Rows[i]["sum"])*5;
+                    }
 
-            //tercer premio
-            primero = Convert.ToDouble(result.Rows[2]["sum"]);
-            tercero = tercero * 5;
+                }
+                total = primero + segundo + tercero;
+
+                return total;
+            }
+
+            return total;
+          
+
+           
         }
 
         public Boolean DejarApuesta(int numero , int sorteo , double monto)
         {
             DataTable result = new DataTable();
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
-            Modelo.Casa casa = new Modelo.Casa();
             result = casa.SelectDineroCasa();
             int total = 0;
 
@@ -193,7 +204,7 @@ namespace ProyectoTiempos.Utils
         {
             DataTable result = new DataTable();
             Modelo.Apuesta apuesta = new Modelo.Apuesta();
-            Modelo.Casa casa = new Modelo.Casa();
+           
             result = casa.SelectDineroCasa();
             double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
             double total;
@@ -207,7 +218,6 @@ namespace ProyectoTiempos.Utils
                 }
                 if (total*60<=dineroCasa)
                 {
-                    //validar que si se puede aumentar mas
                    break;
                 }
                 
@@ -216,6 +226,129 @@ namespace ProyectoTiempos.Utils
             return Math.Round(total, 0);
         }
 
+        public double SumaTotalApuestas(int id_sorteo)
+        {
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+            Modelo.Sorteo sorteo = new Modelo.Sorteo();
+            DataTable result = new DataTable();
+            result = sorteo.SelectSorteosEstadoTrue();
+            List<Int32> sorteos = new List<int>();
 
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                sorteos.Add(Convert.ToInt32(result.Rows[i]["id"]));
+            }
+            sorteos.Remove(id_sorteo);
+
+            double a = 0; 
+
+            for (int i = 0; i < sorteos.Count; i++)
+            {
+               a +=  PrimerosNumerosConMasMonto(sorteos[i]);
+            }
+            return a;
+        }
+
+        public double SorteoTrabajado(int id_sorteo,int numero,double monto)
+        {
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+            DataTable result = new DataTable();
+            result = apuesta.SelectMontoDescendente(id_sorteo);
+            List<Int32> montos = new List<int>();
+            double primero;
+            double segundo;
+            double terceroo;
+            double total = 0;
+            if (result.Rows.Count == 0)
+            {
+              return  total = monto * 60;
+            }
+            if (result.Rows.Count == 1)
+            {
+                primero = Convert.ToDouble(result.Rows[0]["sum"]);
+
+                if (primero < monto)
+                {
+                   return total = (monto * 60) + (primero * 10);
+                }
+                
+            }
+            if (result.Rows.Count == 2)
+            {
+                primero = Convert.ToDouble(result.Rows[0]["sum"]);
+                segundo = Convert.ToDouble(result.Rows[1]["sum"]);
+
+                if (primero < monto && segundo < monto)
+                {
+                   total = (monto * 60) + (primero * 10) + (segundo * 5);
+                }
+                else if (primero > monto && segundo < monto)
+                {
+                   total = (primero * 60) + (monto * 10) + (segundo * 5);
+                }else
+                {
+                    total = (primero * 60) + (segundo * 10) + (monto * 5);
+                }
+
+                return total;
+
+
+            }
+            if (result.Rows.Count >= 2)
+            {
+
+                primero = Convert.ToDouble(result.Rows[0]["sum"]);
+                segundo = Convert.ToDouble(result.Rows[1]["sum"]);
+                terceroo = Convert.ToDouble(result.Rows[2]["sum"]);
+
+                for (int i = 0; i < result.Rows.Count; i++)
+                {
+
+
+                    if (Convert.ToInt32(result.Rows[i]["numero"]) == numero)
+                    {
+                        monto = Convert.ToDouble(result.Rows[i]["sum"]) + monto;
+                        if (primero < monto)
+                        {
+                            primero = monto;
+                        }
+                        else if (segundo < monto)
+                        {
+                            segundo = monto;
+                        }
+                        else if (terceroo < monto)
+                        {
+                            terceroo = monto;
+                        }
+                    }
+                }
+
+                primero = primero * 60;
+                segundo = segundo * 10;
+                terceroo = terceroo * 5;
+                total = primero + segundo + terceroo;
+                return total;
+            }
+            return total;
+                
+           
+        }
+
+        public Boolean PermisoApuesta(int id_sorteo , int numero , double monto)
+        {
+            double total;
+            DataTable result = new DataTable();
+
+            result = casa.SelectDineroCasa();
+            double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
+            double dineroT = SumaTotalApuestas(id_sorteo);
+            total = dineroCasa - dineroT;
+            double b = SorteoTrabajado(id_sorteo, numero, monto);
+            if (total-b>0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

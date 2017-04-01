@@ -66,7 +66,7 @@ namespace ProyectoTiempos.Vistas
                 if (!validarFecha())
                 {
 
-                    if (logCasa.DejarApuesta(numero, id_sorteo, monto))
+                    if (logCasa.PermisoApuesta(id_sorteo,numero,monto))
                     {
                         apuesta.Insert(persona.id, id_sorteo, monto, numero);
                         modificacionCasa();

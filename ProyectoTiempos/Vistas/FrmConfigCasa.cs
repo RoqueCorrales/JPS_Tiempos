@@ -117,11 +117,21 @@ namespace ProyectoTiempos.Vistas
         private void casaInicio()
         {
             DataTable tableCasa = casa.Select();
-            DataRow row = tableCasa.Rows[0];
-            int id = Convert.ToInt32(row["id"].ToString());
-            txtNombre.Text = (row["nombre"].ToString());
-            txtDinero.Text = (row["dinero"].ToString())+" colones";
-            lblMaxima.Text= (row["dinero"].ToString()) + " colones";
+            try
+            {
+                DataRow row = tableCasa.Rows[0];
+                int id = Convert.ToInt32(row["id"].ToString());
+                txtNombre.Text = (row["nombre"].ToString());
+                txtDinero.Text = (row["dinero"].ToString()) + " colones";
+                lblMaxima.Text = (row["dinero"].ToString()) + " colones";
+            }
+            catch (Exception e)
+            {
+                txtNombre.Text = "";
+                txtDinero.Text = "";
+                lblMaxima.Text = "";
+            }
+           
         }
     }
 }
