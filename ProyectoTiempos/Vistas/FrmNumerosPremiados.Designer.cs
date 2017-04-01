@@ -43,59 +43,54 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Premiados";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(118, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Codigo de Sorteo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 93);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(29, 114);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.Size = new System.Drawing.Size(57, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Primero";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(112, 93);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(149, 114);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.Size = new System.Drawing.Size(65, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Segundo";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(217, 93);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(289, 114);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.Size = new System.Drawing.Size(58, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "Tercero";
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(102, 145);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAceptar.Location = new System.Drawing.Point(136, 178);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(73, 19);
+            this.btnAceptar.Size = new System.Drawing.Size(97, 23);
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -203,10 +198,10 @@
             "97",
             "98",
             "99"});
-            this.cbSegundo.Location = new System.Drawing.Point(110, 67);
-            this.cbSegundo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbSegundo.Location = new System.Drawing.Point(147, 82);
+            this.cbSegundo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSegundo.Name = "cbSegundo";
-            this.cbSegundo.Size = new System.Drawing.Size(66, 21);
+            this.cbSegundo.Size = new System.Drawing.Size(87, 24);
             this.cbSegundo.TabIndex = 10;
             // 
             // cbTercero
@@ -311,10 +306,10 @@
             "97",
             "98",
             "99"});
-            this.cbTercero.Location = new System.Drawing.Point(208, 67);
-            this.cbTercero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbTercero.Location = new System.Drawing.Point(277, 82);
+            this.cbTercero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTercero.Name = "cbTercero";
-            this.cbTercero.Size = new System.Drawing.Size(66, 21);
+            this.cbTercero.Size = new System.Drawing.Size(87, 24);
             this.cbTercero.TabIndex = 11;
             // 
             // cbPrimero
@@ -419,29 +414,29 @@
             "97",
             "98",
             "99"});
-            this.cbPrimero.Location = new System.Drawing.Point(11, 67);
-            this.cbPrimero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbPrimero.Location = new System.Drawing.Point(15, 82);
+            this.cbPrimero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPrimero.Name = "cbPrimero";
-            this.cbPrimero.Size = new System.Drawing.Size(66, 21);
+            this.cbPrimero.Size = new System.Drawing.Size(87, 24);
             this.cbPrimero.TabIndex = 12;
             // 
             // cbSorteo
             // 
             this.cbSorteo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSorteo.FormattingEnabled = true;
-            this.cbSorteo.Location = new System.Drawing.Point(102, 5);
-            this.cbSorteo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbSorteo.Location = new System.Drawing.Point(136, 6);
+            this.cbSorteo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSorteo.Name = "cbSorteo";
-            this.cbSorteo.Size = new System.Drawing.Size(123, 21);
+            this.cbSorteo.Size = new System.Drawing.Size(163, 24);
             this.cbSorteo.TabIndex = 13;
             // 
             // FrmNumerosPremiados
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ProyectoTiempos.Properties.Resources.Fondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(310, 172);
+            this.ClientSize = new System.Drawing.Size(413, 212);
             this.Controls.Add(this.cbSorteo);
             this.Controls.Add(this.cbPrimero);
             this.Controls.Add(this.cbTercero);
@@ -452,9 +447,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmNumerosPremiados";
             this.Text = "FrmNumerosPremiados";
+            this.Load += new System.EventHandler(this.FrmNumerosPremiados_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

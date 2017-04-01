@@ -110,7 +110,7 @@ namespace ProyectoTiempos.Vistas
             }
             catch (Exception)
             {
-                MessageBox.Show("Problema");
+                MessageBox.Show("Problema, intentelo nuevamente.");
             }
         }
 
@@ -120,7 +120,8 @@ namespace ProyectoTiempos.Vistas
             DataRow row = tableCasa.Rows[0];
             int id = Convert.ToInt32(row["id"].ToString());
             txtNombre.Text = (row["nombre"].ToString());
-            txtDinero.Text = (row["dinero"].ToString());
+            txtDinero.Text = (row["dinero"].ToString())+" colones";
+            lblMaxima.Text= (row["dinero"].ToString()) + " colones";
         }
     }
 }
