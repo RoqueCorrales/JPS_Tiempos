@@ -273,7 +273,7 @@ namespace ProyectoTiempos.Utils
                 }
                 
             }
-            if (result.Rows.Count == 2)
+            else if (result.Rows.Count == 2)
             {
                 primero = Convert.ToDouble(result.Rows[0]["sum"]);
                 segundo = Convert.ToDouble(result.Rows[1]["sum"]);
@@ -342,9 +342,9 @@ namespace ProyectoTiempos.Utils
             result = casa.SelectDineroCasa();
             double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
             double dineroT = SumaTotalApuestas(id_sorteo);
-            total = dineroCasa - dineroT;
-            double b = SorteoTrabajado(id_sorteo, numero, monto);
-            if (total-b>0)
+            total = (dineroCasa + monto)- dineroT;
+            double b = SorteoTrabajado(id_sorteo, numero, monto) ;
+            if (total-b>=0)
             {
                 return true;
             }
