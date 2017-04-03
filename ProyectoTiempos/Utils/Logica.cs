@@ -54,6 +54,27 @@ namespace ProyectoTiempos.Utils
         }
 
 
+        public List<string> cargarComboSorteos()
+        {
+            DataTable result = new DataTable();
+
+            result = this.sorteo.SelectCodigo();
+            List<string> lista = new List<string>();
+            if (this.sorteo.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.sorteo.errorDescription;
+            }
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                lista.Add(result.Rows[i]["codigo"].ToString());
+            }
+
+
+            return lista;
+        }
+
+
         public int buscarID(string codigo)
         {
             int id_sorteo;

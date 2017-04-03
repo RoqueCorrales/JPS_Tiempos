@@ -19,6 +19,7 @@ namespace ProyectoTiempos
     {
 
         private FrmConfigCasa oConfigCasa;
+        private FrmGanancias oGanancias;
         private FrmGanadores oGanadores;
         private FrmNumerosPremiados oPremiados;
         private FrmCrearSorteo oSorteos;
@@ -197,6 +198,17 @@ namespace ProyectoTiempos
                 oGanadores.MdiParent = this;
                 oGanadores.Show();
             }
+        }
+
+        private void gananciasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.HandleForm(this.oGanancias))
+            {
+                this.oGanancias = new FrmGanancias();
+                oGanancias.MdiParent = this;
+                oGanancias.Show();
+            }
+
         }
     }
     }

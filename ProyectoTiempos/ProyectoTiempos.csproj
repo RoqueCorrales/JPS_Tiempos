@@ -97,6 +97,12 @@
     <Compile Include="Vistas\FrmCrearSorteo.Designer.cs">
       <DependentUpon>FrmCrearSorteo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmGanancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmGanancias.Designer.cs">
+      <DependentUpon>FrmGanancias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmJugar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmCrearSorteo.resx">
       <DependentUpon>FrmCrearSorteo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmGanancias.resx">
+      <DependentUpon>FrmGanancias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmJugar.resx">
       <DependentUpon>FrmJugar.cs</DependentUpon>
