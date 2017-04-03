@@ -450,6 +450,18 @@ namespace ProyectoTiempos.Utils
             return monto;
         }
 
+        public DataTable vistasMontosApostados(string cod)
+        {
+            DataTable res = new DataTable();
+            res = sor.SelectCodigo(cod);
+            int id = Convert.ToInt32(res.Rows[0]["id"]);
+            res = new DataTable();
+            res = apues.SelectMontoDescendente(id);
+
+            return res;
+
+        }
+
     }
 }
 
