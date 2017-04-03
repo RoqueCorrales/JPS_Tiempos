@@ -1,4 +1,5 @@
 ﻿using ProyectoTiempos.Controladores;
+using ProyectoTiempos.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,6 +88,7 @@ namespace ProyectoTiempos.Vistas
                             int id = Convert.ToInt32(row["id"].ToString());
                             casa.Update(id, txtNombre.Text, Convert.ToInt64(txtDinero.Text));
                             MessageBox.Show("Configuracion Actualizada");
+                            casaInicio();
                         }
 
                     }
@@ -122,8 +124,10 @@ namespace ProyectoTiempos.Vistas
                 DataRow row = tableCasa.Rows[0];
                 int id = Convert.ToInt32(row["id"].ToString());
                 txtNombre.Text = (row["nombre"].ToString());
-                txtDinero.Text = (row["dinero"].ToString()) + " colones";
+                txtDinero.Text = (row["dinero"].ToString());
                 lblMaxima.Text = (row["dinero"].ToString()) + " colones";
+                gananciaMinima();
+
             }
             catch (Exception e)
             {
@@ -132,6 +136,28 @@ namespace ProyectoTiempos.Vistas
                 lblMaxima.Text = "";
             }
            
+        }
+
+
+        private void gananciaMinima()
+        {
+            double montoTotal = 0;
+            LogicaCasaNoPierde logCasaN = new LogicaCasaNoPierde();
+            Sorteo sorteo = new Sorteo();
+            DataTable result = sorteo.SelectSorteosEstadoTrue();
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                int id = Convert.ToInt32(result.Rows[i]["id"]);
+
+               montoTotal += logCasaN.PrimerosNumerosConMasMonto(id);
+            }
+
+            montoTotal = Convert.ToDouble(txtDinero.Text) - montoTotal;
+            lblMinima.Text = montoTotal.ToString();
+
+
+
+
         }
     }
 }
