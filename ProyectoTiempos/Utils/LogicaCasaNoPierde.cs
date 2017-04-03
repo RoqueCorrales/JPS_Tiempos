@@ -128,11 +128,7 @@ namespace ProyectoTiempos.Utils
             return listaDineroApagar;
         }
 
-        public void suma(int id_sorteo)
-        {
-
-
-        }
+     
 
         public double PrimerosNumerosConMasMonto(int id_sorteo)
         {
@@ -192,7 +188,7 @@ namespace ProyectoTiempos.Utils
             {
                 total = 0;
             }
-            montoQuePuedeApostar = (monto + total ) * 60;
+            this.montoQuePuedeApostar = (monto + total ) * 60;
             if (montoQuePuedeApostar > dineroCasa)
             {
                 return false;
@@ -223,7 +219,7 @@ namespace ProyectoTiempos.Utils
                 
             }
          
-            return Math.Round(total, 0);
+            return total*60;
         }
 
         public double SumaTotalApuestas(int id_sorteo)
@@ -321,6 +317,23 @@ namespace ProyectoTiempos.Utils
                             terceroo = monto;
                         }
                     }
+                    else
+                    {
+                        List<Double> listaMontos = new List<double>();
+                        listaMontos.Add(primero);
+                        listaMontos.Add(segundo);
+                        listaMontos.Add(terceroo);
+                        listaMontos.Add(monto);
+
+                        listaMontos.Sort();
+                        listaMontos.Reverse();
+
+                        primero = listaMontos[0];
+                        segundo = listaMontos[1];
+                        terceroo = listaMontos[2];
+                    }
+
+
                 }
 
                 primero = primero * 60;
