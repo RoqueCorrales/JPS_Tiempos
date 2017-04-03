@@ -361,13 +361,34 @@ namespace ProyectoTiempos.Utils
          * Luego hacer una busqueda en la tabla apuestas de apuesta.id_sorteo = id_sorteo && where numero apostado = numUno || where numero apostado = numDos || where numero apostado = numTres  
          * 
          * */
-         public DataTable CompletarTablaGanadores(string cod)
+         public DataTable CompletarTablaGanadores(string cod,int id,Boolean privilegios)
         {
             Modelo.SorteoPremiado sPre = new Modelo.SorteoPremiado();
             Modelo.Sorteo s = new Modelo.Sorteo();
             s = buscarInfoSorteo(cod);
             sPre = CargarInfoSorteoPremiado(cod);
-            return apues.SelectParaTablaGanadores(s.id,sPre.numUno,sPre.numDos,sPre.numTres);
+            DataTable res = new DataTable();
+            res = apues.SelectParaTablaGanadores(s.id, sPre.numUno, sPre.numDos, sPre.numTres);
+            if (privilegios)
+            {
+                return res;
+            }else
+            {
+                for (int i = 0; i < res.Rows.Count; i++)
+                {
+                    if (!(Convert.ToInt32(res.Rows[i]["id_persona"]) == id))
+                    {
+                        res.Rows.Remove(res.Rows[i]);
+                    }
+                }
+                return res;
+            }
+
+
+
+
+
+            return res;
             
             
 

@@ -363,5 +363,26 @@ namespace ProyectoTiempos.Utils
             }
             return false;
         }
+
+
+        //***********************Mostrar Montos Posibles para apuestas*********************************//
+
+        /*
+         * casa 100000
+         * premios 90000
+         * 
+         * apostar 10000
+         * 
+         * 
+         * sorteo al que se apuesta (num, num2,num3) = numPosible
+         * 10000/60 = 166
+         * 10000/10 = 100
+         * 10000/5= 2000
+         * 
+         * mae usted puede apostar monto que sea igual al tercero.
+         * 
+         */
+
+
     }
 }
