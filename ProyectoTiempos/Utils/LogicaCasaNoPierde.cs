@@ -259,6 +259,11 @@ namespace ProyectoTiempos.Utils
             {
               return  total = monto * 60;
             }
+            if (Convert.ToInt32(result.Rows[0]["numero"])==numero)
+            {
+                primero = Convert.ToDouble(result.Rows[0]["sum"]);
+                return (total + monto+primero) * 60;
+            }
             if (result.Rows.Count == 1)
             {
                 primero = Convert.ToDouble(result.Rows[0]["sum"]);
@@ -269,10 +274,17 @@ namespace ProyectoTiempos.Utils
                 }
                 
             }
+            
             else if (result.Rows.Count == 2)
             {
                 primero = Convert.ToDouble(result.Rows[0]["sum"]);
                 segundo = Convert.ToDouble(result.Rows[1]["sum"]);
+
+                if (Convert.ToInt32(result.Rows[1]["numero"])==numero)
+                {
+                    segundo = segundo + monto;
+                    monto = 0;
+                }
 
                 if (primero < monto && segundo < monto)
                 {
