@@ -33,10 +33,18 @@ namespace ProyectoTiempos.Vistas
 
         private void Gananciaminima()
         {
+            double total = 0;
+            DataTable result = new DataTable();
+            Modelo.Casa casa = new Modelo.Casa();
+            result = casa.SelectDineroCasa();
+            double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
             LogicaCasaNoPierde logCasa = new LogicaCasaNoPierde();
             string cod = cbSorteo.SelectedItem.ToString();
             int id = log.buscarID(cod);
-            lblMinima.Text = logCasa.PrimerosNumerosConMasMonto(id).ToString();
+
+            total = dineroCasa - logCasa.PrimerosNumerosConMasMonto(id);
+            lblMinima.Text = total.ToString();
+    
         }
 
         private void GananciaMaxima()
