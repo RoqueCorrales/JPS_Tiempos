@@ -441,11 +441,6 @@ namespace ProyectoTiempos.Utils
             {
                 monto = 0;
             }
-            
-            
-
-         
-
 
             return monto;
         }

@@ -19,13 +19,30 @@ namespace ProyectoTiempos.Vistas
             InitializeComponent();
             log = new Logica();
             cbSorteo.DataSource = log.cargarComboSorteos();
+            GananciaMaxima();
+            Gananciaminima();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string cod =cbSorteo.SelectedItem.ToString();
-            lblMaxima.Text = log.gananciaMaxima(cod).ToString();
+            GananciaMaxima();
+            Gananciaminima();
 
+        }
+
+
+        private void Gananciaminima()
+        {
+            LogicaCasaNoPierde logCasa = new LogicaCasaNoPierde();
+            string cod = cbSorteo.SelectedItem.ToString();
+            int id = log.buscarID(cod);
+            lblMinima.Text = logCasa.PrimerosNumerosConMasMonto(id).ToString();
+        }
+
+        private void GananciaMaxima()
+        {
+            string cod = cbSorteo.SelectedItem.ToString();
+            lblMaxima.Text = log.gananciaMaxima(cod).ToString();
         }
     }
 }

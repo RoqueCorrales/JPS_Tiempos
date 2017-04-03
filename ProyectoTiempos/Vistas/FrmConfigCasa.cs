@@ -154,10 +154,6 @@ namespace ProyectoTiempos.Vistas
 
             montoTotal = Convert.ToDouble(txtDinero.Text) - montoTotal;
             lblMinima.Text = montoTotal.ToString();
-
-
-
-
         }
     }
 }
