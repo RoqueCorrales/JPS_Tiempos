@@ -38,6 +38,7 @@
             this.sorteosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disponiblesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jugarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tablaGanadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,7 +46,7 @@
             this.lblJugador = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.timerValidacion = new System.Windows.Forms.Timer(this.components);
-            this.tablaGanadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gananciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,8 @@
             this.configuracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearSorteoToolStripMenuItem,
             this.numerosPremiadosEnSorteoToolStripMenuItem,
-            this.configuracionDElaCasaToolStripMenuItem});
+            this.configuracionDElaCasaToolStripMenuItem,
+            this.gananciasToolStripMenuItem});
             this.configuracion.Name = "configuracion";
             this.configuracion.Size = new System.Drawing.Size(114, 24);
             this.configuracion.Text = "Configuracion";
@@ -119,6 +121,13 @@
             this.jugarToolStripMenuItem.Text = "Jugar";
             this.jugarToolStripMenuItem.Click += new System.EventHandler(this.jugarToolStripMenuItem_Click);
             // 
+            // tablaGanadoresToolStripMenuItem
+            // 
+            this.tablaGanadoresToolStripMenuItem.Name = "tablaGanadoresToolStripMenuItem";
+            this.tablaGanadoresToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
+            this.tablaGanadoresToolStripMenuItem.Text = "Tabla Ganadores";
+            this.tablaGanadoresToolStripMenuItem.Click += new System.EventHandler(this.tablaGanadoresToolStripMenuItem_Click);
+            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
@@ -158,7 +167,7 @@
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Location = new System.Drawing.Point(804, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(39, 30);
             this.button1.TabIndex = 6;
@@ -171,12 +180,12 @@
             this.timerValidacion.Interval = 10000;
             this.timerValidacion.Tick += new System.EventHandler(this.timerValidacion_Tick);
             // 
-            // tablaGanadoresToolStripMenuItem
+            // gananciasToolStripMenuItem
             // 
-            this.tablaGanadoresToolStripMenuItem.Name = "tablaGanadoresToolStripMenuItem";
-            this.tablaGanadoresToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
-            this.tablaGanadoresToolStripMenuItem.Text = "Tabla Ganadores";
-            this.tablaGanadoresToolStripMenuItem.Click += new System.EventHandler(this.tablaGanadoresToolStripMenuItem_Click);
+            this.gananciasToolStripMenuItem.Name = "gananciasToolStripMenuItem";
+            this.gananciasToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
+            this.gananciasToolStripMenuItem.Text = "Ganancias";
+            this.gananciasToolStripMenuItem.Click += new System.EventHandler(this.gananciasToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -191,7 +200,7 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipal";
             this.Text = "JPS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
@@ -223,6 +232,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timerValidacion;
         private System.Windows.Forms.ToolStripMenuItem tablaGanadoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gananciasToolStripMenuItem;
     }
 }
 
