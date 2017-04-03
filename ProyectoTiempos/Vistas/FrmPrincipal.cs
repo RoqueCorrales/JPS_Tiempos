@@ -17,7 +17,7 @@ namespace ProyectoTiempos
 
     public partial class FrmPrincipal : Form
     {
-
+        private FrmVistasApostados oApostados;
         private FrmConfigCasa oConfigCasa;
         private FrmGanancias oGanancias;
         private FrmGanadores oGanadores;
@@ -207,6 +207,17 @@ namespace ProyectoTiempos
                 this.oGanancias = new FrmGanancias();
                 oGanancias.MdiParent = this;
                 oGanancias.Show();
+            }
+
+        }
+
+        private void montosApostadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.HandleForm(this.oApostados))
+            {
+                this.oApostados = new FrmVistasApostados();
+                oApostados.MdiParent = this;
+                oApostados.Show();
             }
 
         }

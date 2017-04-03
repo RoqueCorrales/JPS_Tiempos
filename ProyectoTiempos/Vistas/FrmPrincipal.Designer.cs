@@ -35,6 +35,8 @@
             this.crearSorteoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.numerosPremiadosEnSorteoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracionDElaCasaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gananciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.montosApostadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sorteosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disponiblesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jugarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +48,6 @@
             this.lblJugador = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.timerValidacion = new System.Windows.Forms.Timer(this.components);
-            this.gananciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,8 @@
             this.crearSorteoToolStripMenuItem,
             this.numerosPremiadosEnSorteoToolStripMenuItem,
             this.configuracionDElaCasaToolStripMenuItem,
-            this.gananciasToolStripMenuItem});
+            this.gananciasToolStripMenuItem,
+            this.montosApostadosToolStripMenuItem});
             this.configuracion.Name = "configuracion";
             this.configuracion.Size = new System.Drawing.Size(114, 24);
             this.configuracion.Text = "Configuracion";
@@ -97,6 +99,20 @@
             this.configuracionDElaCasaToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
             this.configuracionDElaCasaToolStripMenuItem.Text = "Configuracion de la Casa";
             this.configuracionDElaCasaToolStripMenuItem.Click += new System.EventHandler(this.configuracionDElaCasaToolStripMenuItem_Click);
+            // 
+            // gananciasToolStripMenuItem
+            // 
+            this.gananciasToolStripMenuItem.Name = "gananciasToolStripMenuItem";
+            this.gananciasToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
+            this.gananciasToolStripMenuItem.Text = "Ganancias";
+            this.gananciasToolStripMenuItem.Click += new System.EventHandler(this.gananciasToolStripMenuItem_Click);
+            // 
+            // montosApostadosToolStripMenuItem
+            // 
+            this.montosApostadosToolStripMenuItem.Name = "montosApostadosToolStripMenuItem";
+            this.montosApostadosToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
+            this.montosApostadosToolStripMenuItem.Text = "Montos Apostados";
+            this.montosApostadosToolStripMenuItem.Click += new System.EventHandler(this.montosApostadosToolStripMenuItem_Click);
             // 
             // sorteosToolStripMenuItem
             // 
@@ -180,13 +196,6 @@
             this.timerValidacion.Interval = 10000;
             this.timerValidacion.Tick += new System.EventHandler(this.timerValidacion_Tick);
             // 
-            // gananciasToolStripMenuItem
-            // 
-            this.gananciasToolStripMenuItem.Name = "gananciasToolStripMenuItem";
-            this.gananciasToolStripMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.gananciasToolStripMenuItem.Text = "Ganancias";
-            this.gananciasToolStripMenuItem.Click += new System.EventHandler(this.gananciasToolStripMenuItem_Click);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -233,6 +242,7 @@
         private System.Windows.Forms.Timer timerValidacion;
         private System.Windows.Forms.ToolStripMenuItem tablaGanadoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gananciasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem montosApostadosToolStripMenuItem;
     }
 }
 
