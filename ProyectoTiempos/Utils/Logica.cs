@@ -20,6 +20,7 @@ namespace ProyectoTiempos.Utils
         private List<Modelo.Sorteo> lista;
         private Modelo.Apuesta apuesta;
         private Modelo.Persona persona;
+        private Controladores.Sorteo sor;
         public Logica()
         {
             sorteo = new Sorteo();
@@ -30,6 +31,7 @@ namespace ProyectoTiempos.Utils
             not = new Notificacion();
             apues = new Apuesta();
             casa = new Casa();
+            sor = new Controladores.Sorteo();
         }
 
 
@@ -421,6 +423,33 @@ namespace ProyectoTiempos.Utils
             }
             return monto;
         }
+
+        public double gananciaMaxima(string cod)
+        {
+            double monto =0;
+            DataTable res = new DataTable();
+            res =sor.SelectCodigo(cod);
+
+            int id = Convert.ToInt32(res.Rows[0]["id"]);
+            res = new DataTable();
+            res = apues.SelectGanaciaMaxima(id);
+            try
+            {
+                monto = Convert.ToDouble(res.Rows[0]["sum"]);
+            }
+            catch (Exception)
+            {
+                monto = 0;
+            }
+            
+            
+
+         
+
+
+            return monto;
+        }
+
     }
 }
 

@@ -101,5 +101,18 @@ namespace ProyectoTiempos.Controladores
             }
             return result;
         }
+
+        public DataTable SelectGanaciaMaxima(int id_sorteo)
+        {
+            DataTable result = new DataTable();
+            result = new DataTable();
+            result = this.apuesta.SelectGananciaMaxima(id_sorteo);
+            if (this.apuesta.isError)
+            {
+                this.isError = true;
+                this.errorDescription = this.apuesta.errorDescription;
+            }
+            return result;
+        }
     }
 }

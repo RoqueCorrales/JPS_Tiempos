@@ -20,5 +20,12 @@ namespace ProyectoTiempos.Vistas
             log = new Logica();
             cbSorteo.DataSource = log.cargarComboSorteos();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string cod =cbSorteo.SelectedItem.ToString();
+            lblMaxima.Text = log.gananciaMaxima(cod).ToString();
+
+        }
     }
 }
