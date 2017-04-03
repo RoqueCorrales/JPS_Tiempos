@@ -367,7 +367,7 @@ namespace ProyectoTiempos.Utils
             Modelo.Sorteo s = new Modelo.Sorteo();
             s = buscarInfoSorteo(cod);
             sPre = CargarInfoSorteoPremiado(cod);
-            return apues.SelectParaTablaGanadores(s.id);
+            return apues.SelectParaTablaGanadores(s.id,sPre.numUno,sPre.numDos,sPre.numTres);
             
             
 
@@ -418,10 +418,11 @@ namespace ProyectoTiempos.Utils
             }else if( numero == dos)
             {
                 monto = monto * 10;
-            }else
+            }else if(tres == numero)
             {
                 monto = monto * 5;
             }
+            
             return monto;
         }
 

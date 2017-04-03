@@ -89,11 +89,11 @@ namespace ProyectoTiempos.Controladores
         *  id parametro que recibe.
         *  Devuelve un DATATABLE para la tablaganadores.
         */
-        public DataTable SelectParaTablaGanadores(int id_sorteo)
+        public DataTable SelectParaTablaGanadores(int id_sorteo, int uno,int dos,int tres)
         {
             DataTable result = new DataTable();
             result = new DataTable();
-            result = this.apuesta.SelectApuesta(id_sorteo);
+            result = this.apuesta.SelectApuestasTablaGanadores(id_sorteo,uno,dos,tres);
             if (this.apuesta.isError)
             {
                 this.isError = true;

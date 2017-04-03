@@ -69,7 +69,7 @@ namespace ProyectoTiempos.Modelo
         */
         public DataTable SelectPorCodigo(string cod)
         {
-            DataTable result = Program.da.SqlQuery("select * from  public.numpremiados where codigo sorteo = " + cod +";", new Dictionary<string, object>());
+            DataTable result = Program.da.SqlQuery("select * from  public.numpremiados where codigo_sorteo = '" + cod +"';", new Dictionary<string, object>());
             if (Program.da.isError)
             {
                 this.isError = true;

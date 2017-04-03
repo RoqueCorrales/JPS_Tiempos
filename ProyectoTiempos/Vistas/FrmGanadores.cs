@@ -47,6 +47,7 @@ namespace ProyectoTiempos.Vistas
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            tablaGanadores.DataSource = "";
             tablaGanadores.DataSource = log.CompletarTablaGanadores(cbSorteo.SelectedItem.ToString());
         }
 

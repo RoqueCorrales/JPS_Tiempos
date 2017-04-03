@@ -84,6 +84,19 @@ namespace ProyectoTiempos.Modelo
             return result;
         }
 
+        public DataTable SelectApuestasTablaGanadores(int id,int uno,int dos,int tres)
+        {
+            Dictionary<string, object> parametros = new Dictionary<string, object>();
+            parametros.Add("id_sorteo", id);
+            DataTable result = Program.da.SqlQuery("select * from apuesta where id_sorteo = "+id+"  and  (numero = "+uno+" or  numero= "+dos+" or  numero = "+tres+")" , new Dictionary<string, object>());
+            if (Program.da.isError)
+            {
+                this.isError = true;
+                this.errorDescription = Program.da.errorDescription;
+            }
+            return result;
+        }
+
         /*
          *Seleciona el dinero apostado a un numero. 
          * Recibe de parametros id_sorteo, numero.
