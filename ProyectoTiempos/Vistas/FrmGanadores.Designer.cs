@@ -35,12 +35,12 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.cbSorteo = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblFelicidades = new System.Windows.Forms.Label();
-            this.lblMontoPagado = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.lblMontoPagado = new System.Windows.Forms.Label();
+            this.lblFelicidades = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaGanadores)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,7 @@
             this.tablaGanadores.RowTemplate.Height = 24;
             this.tablaGanadores.Size = new System.Drawing.Size(556, 281);
             this.tablaGanadores.TabIndex = 1;
+            this.tablaGanadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaGanadores_CellContentClick);
             this.tablaGanadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaGanadores_CellContentClick);
             // 
             // label2
@@ -108,23 +109,29 @@
             this.panel1.Size = new System.Drawing.Size(225, 192);
             this.panel1.TabIndex = 6;
             // 
-            // label3
+            // lblNombre
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(705, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Informacion";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(139, 38);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(0, 17);
+            this.lblNombre.TabIndex = 6;
             // 
-            // label4
+            // lblMontoPagado
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Nombre :";
+            this.lblMontoPagado.AutoSize = true;
+            this.lblMontoPagado.Location = new System.Drawing.Point(139, 84);
+            this.lblMontoPagado.Name = "lblMontoPagado";
+            this.lblMontoPagado.Size = new System.Drawing.Size(0, 17);
+            this.lblMontoPagado.TabIndex = 5;
+            // 
+            // lblFelicidades
+            // 
+            this.lblFelicidades.AutoSize = true;
+            this.lblFelicidades.Location = new System.Drawing.Point(75, 132);
+            this.lblFelicidades.Name = "lblFelicidades";
+            this.lblFelicidades.Size = new System.Drawing.Size(0, 17);
+            this.lblFelicidades.TabIndex = 3;
             // 
             // label5
             // 
@@ -135,29 +142,23 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Monto Pagado :";
             // 
-            // lblFelicidades
+            // label4
             // 
-            this.lblFelicidades.AutoSize = true;
-            this.lblFelicidades.Location = new System.Drawing.Point(75, 132);
-            this.lblFelicidades.Name = "lblFelicidades";
-            this.lblFelicidades.Size = new System.Drawing.Size(0, 17);
-            this.lblFelicidades.TabIndex = 3;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Nombre :";
             // 
-            // lblMontoPagado
+            // label3
             // 
-            this.lblMontoPagado.AutoSize = true;
-            this.lblMontoPagado.Location = new System.Drawing.Point(139, 84);
-            this.lblMontoPagado.Name = "lblMontoPagado";
-            this.lblMontoPagado.Size = new System.Drawing.Size(0, 17);
-            this.lblMontoPagado.TabIndex = 5;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(139, 38);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(0, 17);
-            this.lblNombre.TabIndex = 6;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(705, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Informacion";
             // 
             // FrmGanadores
             // 
