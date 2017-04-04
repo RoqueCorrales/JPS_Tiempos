@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoTiempos.Controladores;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -196,30 +197,89 @@ namespace ProyectoTiempos.Utils
             return true;
         }
 
-        public double ApuestaMaxima()
+        public double ApuestaMaxima(int numero, double monto, string codigo)
         {
-            DataTable result = new DataTable();
-            Modelo.Apuesta apuesta = new Modelo.Apuesta();
-           
-            result = casa.SelectDineroCasa();
-            double dineroCasa = Convert.ToDouble(result.Rows[0]["dinero"]);
-            double total;
-            total = montoQuePuedeApostar;
+            DataTable plataHome = casa.SelectDineroCasa();
+            int total = 0;
+            double montoTotal = 0;
+            double dineroCasa = Convert.ToDouble(plataHome.Rows[0]["dinero"]);
 
-            while (true)
+            
+            
+            Modelo.Apuesta apuesta = new Modelo.Apuesta();
+
+            Sorteo sorteo = new Sorteo();
+            DataTable result = sorteo.SelectSorteosEstadoTrue();
+            int idT = 0;
+
+
+
+            for (int i = 0; i < result.Rows.Count; i++)
             {
-                if (total*60>dineroCasa)
+                if (result.Rows[i]["codigo"].Equals(codigo))
                 {
-                    total = total / 60;
+                    idT = Convert.ToInt32(result.Rows[i]["id"]);
+                    //result.Rows.Remove(result.Rows[i]);
+
                 }
-                if (total*60<=dineroCasa)
-                {
-                   break;
-                }
+                int id = Convert.ToInt32(result.Rows[i]["id"]);
+
+                montoTotal += PrimerosNumerosConMasMonto(id);
                 
             }
-         
-            return total*60;
+            montoTotal = dineroCasa - montoTotal;
+            DataTable sort = apuesta.SelectMontoDescendente(idT);
+            List<Sumas> listaApuestas = new List<Sumas>();
+            Sumas apu = new Sumas();
+
+            for (int k = 0; k < sort.Rows.Count; k++)
+            {
+                apu = new Sumas();
+                apu.num = Convert.ToInt32(sort.Rows[k]["numero"]);
+                apu.monto = Convert.ToInt32(sort.Rows[k]["sum"]);
+              
+
+                listaApuestas.Add(apu);
+
+            }
+            for (int i = 0; i < listaApuestas.Count; i++)
+            {
+
+                if ((listaApuestas[i].num) == numero)
+                {
+                    listaApuestas[i].monto = listaApuestas[i].monto + monto;
+                    if (listaApuestas[0].monto.Equals(listaApuestas[i].monto))
+                    {
+                        return Math.Round(montoTotal / 60,0);
+                    }
+                    if (listaApuestas[1].monto.Equals(listaApuestas[i].monto))
+                    {
+                        return Math.Round(montoTotal / 10,0);
+                    }
+                    if (listaApuestas[2].monto.Equals(listaApuestas[i].monto))
+                    {
+                        return Math.Round(montoTotal / 5,0);
+                    }
+                    else
+                    {
+                        return Math.Round( listaApuestas[2].monto,0);
+
+                    }
+
+
+
+
+
+
+
+                }
+
+                
+
+
+            }
+            return 0;
+
         }
 
         public double SumaTotalApuestas(int id_sorteo)
@@ -264,11 +324,13 @@ namespace ProyectoTiempos.Utils
                 primero = Convert.ToDouble(result.Rows[0]["sum"]);
                 return (total + monto+primero) * 60;
             }
+
             if (result.Rows.Count == 1)
             {
+
                 primero = Convert.ToDouble(result.Rows[0]["sum"]);
 
-                if (primero < monto)
+                if ((primero < monto)||(primero==monto))
                 {
                    return total = (monto * 60) + (primero * 10);
                 }

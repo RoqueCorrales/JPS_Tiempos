@@ -77,7 +77,7 @@ namespace ProyectoTiempos.Vistas
                     else
                     {
                         MessageBox.Show("Ese dinero no es posible apostarlo porque la casa no tiene el suficioente dinero\n"
-                            + "como para darte tu premio si quedas ganador \nLa apuesta maxima que puedes hacer es de: " + logCasa.ApuestaMaxima());
+                            + "como para darte tu premio si quedas ganador \nLa apuesta maxima que puedes hacer es de: " + logCasa.ApuestaMaxima(numero,monto, cbSorteo.SelectedItem.ToString()));
                     }
 
                 }

@@ -73,6 +73,7 @@
     <Compile Include="Modelo\Casa.cs" />
     <Compile Include="Modelo\Persona.cs" />
     <Compile Include="Modelo\Sorteo.cs" />
+    <Compile Include="Utils\Sumas.cs" />
     <Compile Include="Vistas\FrmAyuda.cs">
       <SubType>Form</SubType>
     </Compile>

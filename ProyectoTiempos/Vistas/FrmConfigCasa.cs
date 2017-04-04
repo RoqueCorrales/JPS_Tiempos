@@ -15,11 +15,14 @@ namespace ProyectoTiempos.Vistas
     public partial class FrmConfigCasa : Form
     {
         private Casa casa;
+        private double plata;
         public FrmConfigCasa()
         {
             InitializeComponent();
+            plata = 0;
             casa = new Casa();
             casaInicio();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,12 +86,14 @@ namespace ProyectoTiempos.Vistas
                     {
                         if (validacionDinero())
                         {
-
-                            DataRow row = tableCasa.Rows[0];
-                            int id = Convert.ToInt32(row["id"].ToString());
-                            casa.Update(id, txtNombre.Text, Convert.ToInt64(txtDinero.Text));
-                            MessageBox.Show("Configuracion Actualizada");
-                            casaInicio();
+                           
+                                DataRow row = tableCasa.Rows[0];
+                                int id = Convert.ToInt32(row["id"].ToString());
+                                casa.Update(id, txtNombre.Text, Convert.ToInt64(txtDinero.Text));
+                                MessageBox.Show("Configuracion Actualizada");
+                                casaInicio();
+                           
+                         
                         }
 
                     }
@@ -124,7 +129,8 @@ namespace ProyectoTiempos.Vistas
                 DataRow row = tableCasa.Rows[0];
                 int id = Convert.ToInt32(row["id"].ToString());
                 txtNombre.Text = (row["nombre"].ToString());
-                txtDinero.Text = (row["dinero"].ToString());
+                this.plata =Convert.ToDouble( (row["dinero"]));
+                txtDinero.Text = plata.ToString();
                 lblMaxima.Text = (row["dinero"].ToString()) + " colones";
                 gananciaMinima();
 
